@@ -55,13 +55,13 @@ Standard convention is that you should not use a `.0` if you are not intending a
 
 Single quotes are for single chars, where as double quotes are for strings.
 
-```
+``` haskell
 'a' -- value of 'a'
 "a" -- value of ['a']
 ```
 
 ### Bool
-```
+``` haskell
 true  -- notational value of true but literal value of 1
 false -- notational value of false but literal value of 0
 
