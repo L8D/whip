@@ -120,7 +120,7 @@ Functions and Variables
 -----------------------
 
 ### Functions
-Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated.
+Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated, this 'value' commonly referred to as a lambda.
 
 A function that takes to args and adds them together:
 ``` python
@@ -143,4 +143,24 @@ Variables are a very powerful thing to have. To define a variable, you define a 
 Now later in your code, whenever you reference `foo` it will represent 10. Like:
 ``` python
 (add 5 foo) # represents the value of 5 + 10 which is 15
+```
+
+Semantics
+---------
+
+### Conditionals
+The `if` function is pretty standard. It takes three args, the first argument is evaluated to a bool, if the bool is true, it returns the 2nd arg, if the bool is false it returns the 3rd arg or nothing if there isn't a 3rd arg.
+Example:
+``` python
+(if true "this gets returned if true is true" "this gets returned if true is false") # returns "this gets returned if true is true"
+```
+
+### Loops
+Generally if you wanted to loop something over and over, you'd use recursion. But how can you preform recursion upon a lambda for inline-loops?
+
+To straight out define a lambda, you can use the `->` operator. The only thing the lambda operator does is allow the corresponding `<-` operator to call itself. Here is an example:
+``` lisp
+# Repeatedly append 'a' to the list foo
+(def "foo" *[])
+->((if ((len foo) < 10) ((foo << 'a') <-)))
 ```
