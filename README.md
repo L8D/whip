@@ -36,35 +36,83 @@ Strings are very similar to Haskell strings, in the case that they are simply ar
 Vairable Notation
 -----------------
 
-### Number
-``` haskell
-1    -- notational value of 1 but literal value of 1.0
-1.0  -- notational value of 1(because it is a .0) but literal value of 1.0
-3.14 -- notational and literal value of 3.14
+### Atoms
+
+#### Number
+``` python
+1    # notational value of 1 but literal value of 1.0
+1.0  # notational value of 1(because it is a .0) but literal value of 1.0
+3.14 # notational and literal value of 3.14
 ```
 
 Standard convention is that you should not use a `.0` if you are not intending a float/double style variable.
 
-### Char
-``` haskell
-'a' -- notational value of 'a' but literal value of 97(ascii)
+#### Char
+``` python
+'a' # notational value of 'a' but literal value of 97(ascii)
 
--- syntax for casting number to char is a prefixed grave symbol
-`97 -- notational value of 'a'
+# syntax for casting number to char is a prefixed grave symbol
+`97 # notational value of 'a'
 ```
 
 Single quotes are for single chars, where as double quotes are for strings.
 
-``` haskell
-'a' -- value of 'a'
-"a" -- value of ['a']
+``` python
+'a' # value of 'a'
+"a" # value of ['a']
 ```
 
-### Bool
-``` haskell
-true  -- notational value of true but literal value of 1
-false -- notational value of false but literal value of 0
+#### Bool
+``` python
+true  # notational value of true but literal value of 1
+false # notational value of false but literal value of 0
 
--- syntax for casting number to bool is a prefixed double-grave symbol
-``1 -- notational value of true but literal value of 1
+# syntax for casting number to bool is a prefixed double-grave symbol
+``1 # notational value of true but literal value of 1
+```
+
+### Sets
+Sets have two types of notation: declaration and retrieval.
+
+#### Dict
+Declaration is similar to python and JavaScript.
+``` python
+{"key":"value" "foo":1}
+```
+
+Retrival is the same for every set.
+``` python
+# To get the value of "foo"
+{"key":"value"}["key"] # represents "value"
+```
+
+#### List
+Lists can be declared by simply making a dict that only uses numbers as it's keys.
+The conventional way of making an array automatically assign a number key of the position.
+``` python
+{1:"something" 2:"foo" 3:"var"} # the unconventional way of making an array.
+["something" "foo" "var"] # the conventional way of making an array
+
+["element 1" "element 2" "element 3"][2] # "element 2"
+```
+
+#### String
+Strings are very simple and as seen previously.
+``` python
+{1:'a' 2:'b' 3:'c'}
+# is the same as:
+['a', 'b', 'c']
+# which is the same as:
+"abc"
+
+# and retrieval works too
+"abc"[2] # 'b'
+```
+
+#### Tuple
+Tuples are their own type of set. Though you can cast an array to a tuple.
+``` python
+('a' 5)
+# syntax for casting array, object, or string to tuple is a prefixed grave symbol; like for chars and bools
+`['a' 5] # ('a' 5)
 ```
