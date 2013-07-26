@@ -27,7 +27,44 @@ Lists(aka. Arrays) are very similar to JavaScript arrays in the case that they a
 
 #### Tuple
 Tuples are very similar to Haskell tuples in the case that they have different variable type depending on the order and type of values it contains.
+
 `TODO: Add more stuff about Tuples`
 
 #### String
 Strings are very similar to Haskell strings, in the case that they are simply arrays consisting of only chars. They are commonly represented by it's corresponding string notation, instead of an actual array of chars.
+
+Vairable Notation
+-----------------
+
+### Number
+``` haskell
+1    -- notational value of 1 but literal value of 1.0
+1.0  -- notational value of 1(because it is a .0) but literal value of 1.0
+3.14 -- notational and literal value of 3.14
+```
+
+Standard convention is that you should not use a `.0` if you are not intending a float/double style variable.
+
+### Char
+``` haskell
+'a' -- notational value of 'a' but literal value of 97(ascii)
+
+-- syntax for casting number to char is a prefixed grave symbol
+`97 -- notational value of 'a'
+```
+
+Single quotes are for single chars, where as double quotes are for strings.
+
+```
+'a' -- value of 'a'
+"a" -- value of ['a']
+```
+
+### Bool
+```
+true  -- notational value of true but literal value of 1
+false -- notational value of false but literal value of 0
+
+-- syntax for casting number to bool is a prefixed double-grave symbol
+``1 -- notational value of true but literal value of 1
+```
