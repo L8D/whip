@@ -16,6 +16,9 @@ Chars(aka. Characters) are very similar to C-style char ints. They are commonly 
 #### Bool
 Bools(aka. Booleans) are very similar to C-style booleans. They are commonly represented by either `true` or `false`. They hold a value of either 0 or 1. Same as a char, if a number that is not between 0 and 1 is casted to a bool, it will be module wrapped.
 
+#### Null
+Nulls(aka. nil, void, undefined) are value types given to variables that have absolutely no value.
+
 ### Sets
 Sets are ways of containing, sorting, and orginizing multiple values.
 
@@ -120,7 +123,7 @@ Functions and Variables
 -----------------------
 
 ### Functions
-Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated, this 'value' commonly referred to as a lambda.
+Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated, this 'value' commonly referred to as a lambda. When referencing an undefined function/variable, it's value will be null.
 
 A function that takes to args and adds them together:
 ``` python
@@ -164,3 +167,68 @@ To straight out define a lambda, you can use the `->` operator. The only thing t
 (def "foo" *[])
 ->((if ((len foo) < 10) ((foo << 'a') <-)))
 ```
+
+### Streams
+Streams are represented by a number, and allow for reading and writing to them.
+To create duplex stream which is strictly for in-program use, use the `canal` function like so:
+```
+(def mystream canal) # mystream is now some random number
+```
+To write to the stream, use the `pump` function like so:
+```
+(pump mystream "foo")
+```
+To read from a stream, use the `scoop` function like so:
+```
+(scoop mystream) # returns "foo"
+```
+And you can optionally close streams with the `clog` function like so:
+```
+(clog mystream)
+(pump mysream "foo") # raises error
+```
+
+### File IO
+
+#### Writing
+Write a string to a file:
+```
+(puke "foobar.txt" "foo")
+```
+Append a string to a file:
+```
+(spit "foobar.txt" "bar")
+```
+
+#### Reading
+Read entire file to string:
+```
+(slurp "foobar.txt") # returns "foobar"
+```
+Read x amount of chars from file(third argument can represent the current position in the file):
+```
+(sip "foobar.txt" 3) # returns "foo"
+(sip "foobar.txt" 3 3) # returns "bar"
+```
+
+#### Streams
+Additionally, you can use streams for file reading and writing with the `well` function like so:
+```
+(def myfile (well "foobar.txt"))
+(scoop myfile) # returns "foobar"
+(pump myfile "\nfoobar on line 2")
+(clog myfile) # closes and writes file
+```
+
+### Network IO
+Sockets are just like duplex streams, but with networks and all that. To create a socket, use the `plug` function like so:
+```
+(def mysock (plug "www.google.com" 80)) # mysock is now some random number
+```
+Sending stuff through the socket with stream pumps and scoops.
+```
+(pump mysock "GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
+(scoop mysock) # returns string of the entire HTTP query with the HTML and everything.
+(clog mysock)
+```
+...soon an http thingy will be here...soon...
