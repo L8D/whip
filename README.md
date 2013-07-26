@@ -28,11 +28,6 @@ Dicts(aka. Dictionaries) are very similar to JavaScript objects, or Python dicti
 #### List
 Lists(aka. Arrays) are very similar to JavaScript arrays in the case that they are simply dictionaries that only use numbers for their keys. They are commonly represented by it's corresponding array notation, instead of just a dict using keys as numbers.
 
-#### Tuple
-Tuples are very similar to Haskell tuples in the case that they have different variable type depending on the order and type of values it contains.
-
-`TODO: Add more stuff about Tuples`
-
 #### String
 Strings are very similar to Haskell strings, in the case that they are simply arrays consisting of only chars. They are commonly represented by it's corresponding string notation, instead of an actual array of chars.
 
@@ -42,7 +37,7 @@ Value Notation
 ### Atoms
 
 #### Number
-``` python
+``` ruby
 1    # notational value of 1 but literal value of 1.0
 1.0  # notational value of 1(because it is a .0) but literal value of 1.0
 3.14 # notational and literal value of 3.14
@@ -51,7 +46,7 @@ Value Notation
 Standard convention is that you should not use a `.0` if you are not intending a float/double style variable.
 
 #### Char
-``` python
+``` ruby
 'a' # notational value of 'a' but literal value of 97(ascii)
 
 # syntax for casting number to char is a prefixed grave symbol
@@ -60,13 +55,13 @@ Standard convention is that you should not use a `.0` if you are not intending a
 
 Single quotes are for single chars, where as double quotes are for strings.
 
-``` python
+``` ruby
 'a' # value of 'a'
 "a" # value of ['a']
 ```
 
 #### Bool
-``` python
+``` ruby
 true  # notational value of true but literal value of 1
 false # notational value of false but literal value of 0
 
@@ -79,19 +74,19 @@ Sets have two types of notation: declaration and retrieval.
 
 #### Dict
 Declaration is similar to python and JavaScript.
-``` python
+``` ruby
 {"key":"value" "foo":1}
 ```
 
 Retrival is the same for every set.
-``` python
+``` ruby
 # To get the value of "foo"
 {"key":"value"}["key"] # represents "value"
 ```
 
 #### List
 Lists can be declared by simply making a dict that only uses numbers as it's keys. The conventional way of making an array automatically assign a number key of the position.
-``` python
+``` ruby
 {1:"something" 2:"foo" 3:"var"} # the unconventional way of making an array.
 ["something" "foo" "var"] # the conventional way of making an array
 
@@ -100,7 +95,7 @@ Lists can be declared by simply making a dict that only uses numbers as it's key
 
 #### String
 Strings are very simple and as seen previously.
-``` python
+``` ruby
 {1:'a' 2:'b' 3:'c'}
 # is the same as:
 ['a' 'b' 'c']
@@ -111,41 +106,30 @@ Strings are very simple and as seen previously.
 "abc"[2] # 'b'
 ```
 
-#### Tuple
-Tuples are their own type of set. Though you can cast an array to a tuple. Additionally, the syntax for a tuple require a comma in between to differentiate it from a function call or something.
-``` python
-('a', 5)
-# syntax for casting array, object, or string to tuple is a prefixed grave symbol; like for chars and bools
-`['a' 5] # ('a', 5)
-```
-
-Functions and Variables
+Functions(Lambdas) and Variables
 -----------------------
 
-### Functions
-Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated, this 'value' commonly referred to as a lambda. When referencing an undefined function/variable, it's value will be null.
+### Lambdas
+Another type of variable is a is lambda. The syntax for a lambda uses the `def` function which(when defining a lambda) takes two arguements: arg set, value. The arg set is just an array of undefined variables that uses '()'s instead of '[]'s. The value is just code that eventually returns a value, but that code gets re-avaluated everytime the lambda is called. A lambda looks like:
+``` ruby
+(def (x y) x + y) # first argument is considered 'x' and the second is 'y', then it returns the value of x + y
 
-A function that takes to args and adds them together:
-``` python
-#    name
-#      |  arguments
-#      |      | returned value
-#      |      |       |
-(def "add" (n1 n2) n1 + n2)
-```
-Now later in our code, when I use the "add" function like so.
-``` python
-(add 5 5) # represents 10
 ```
 
 ### Variables
-Variables are a very powerful thing to have. To define a variable, you define a function without any arguments.
-``` python
+Variables are a very powerful thing to have. The syntax for defining a variable uses the `def` function which(when defining a variable) takes two arguments: name, value. The name is a string that represents what the variables name will be, and the value will be the permanently stored value of it.
+``` ruby
 (def "foo" 10)
 ```
 Now later in your code, whenever you reference `foo` it will represent 10. Like:
-``` python
-(add 5 foo) # represents the value of 5 + 10 which is 15
+``` ruby
+(add foo 5) # returns 10 + 5, 15
+```
+
+### Functions
+Functions are basically variables containing lambdas. Syntax is as straight forward as:
+``` ruby
+(def "add" (x y) x + y)
 ```
 
 Semantics
@@ -154,36 +138,38 @@ Semantics
 ### Conditionals
 The `if` function is pretty standard. It takes three args, the first argument is evaluated to a bool, if the bool is true, it returns the 2nd arg, if the bool is false it returns the 3rd arg or nothing if there isn't a 3rd arg.
 Example:
-``` python
+``` ruby
 (if true "true is true" "true is false") # returns "true is true"
 ```
 
 ### Loops
 Generally if you wanted to loop something over and over, you'd use recursion. But how can you preform recursion upon a lambda for inline-loops?
-
-To straight out define a lambda, you can use the `->` operator. The only thing the lambda operator does is allow the corresponding `<-` operator to call itself. Here is an example:
-``` lisp
-# Repeatedly append 'a' to the list foo
-(def "foo" *[])
-->((if ((len foo) < 10) ((foo << 'a') <-)))
+The `self` variable represents the lambda you are declaring, and you can use it like so:
+``` ruby
+((def (arr, amt)
+  (if (amt < 10)
+    ((arr << 9001)
+      (amt--)
+      (self arr, amt))
+    arr)) [], 0)
 ```
 
 ### Streams
 Streams are represented by a number, and allow for reading and writing to them.
 To create duplex stream which is strictly for in-program use, use the `canal` function like so:
-```
+``` ruby
 (def mystream canal) # mystream is now some random number
 ```
 To write to the stream, use the `pump` function like so:
-```
+``` ruby
 (pump mystream "foo")
 ```
 To read from a stream, use the `scoop` function like so:
-```
+``` ruby
 (scoop mystream) # returns "foo"
 ```
 And you can optionally close streams with the `clog` function like so:
-```
+``` ruby
 (clog mystream)
 (pump mysream "foo") # raises error
 ```
@@ -192,28 +178,28 @@ And you can optionally close streams with the `clog` function like so:
 
 #### Writing
 Write a string to a file:
-```
+``` ruby
 (puke "foobar.txt" "foo")
 ```
 Append a string to a file:
-```
+``` ruby
 (spit "foobar.txt" "bar")
 ```
 
 #### Reading
 Read entire file to string:
-```
+``` ruby
 (slurp "foobar.txt") # returns "foobar"
 ```
 Read x amount of chars from file(third argument can represent the current position in the file):
-```
+``` ruby
 (sip "foobar.txt" 3) # returns "foo"
 (sip "foobar.txt" 3 3) # returns "bar"
 ```
 
 #### Streams
 Additionally, you can use streams for file reading and writing with the `well` function like so:
-```
+``` ruby
 (def myfile (well "foobar.txt"))
 (scoop myfile) # returns "foobar"
 (pump myfile "\nfoobar on line 2")
@@ -222,11 +208,11 @@ Additionally, you can use streams for file reading and writing with the `well` f
 
 ### Network IO
 Sockets are just like duplex streams, but with networks and all that. To create a socket, use the `plug` function like so:
-```
+``` ruby
 (def mysock (plug "www.google.com" 80)) # mysock is now some random number
 ```
 Sending stuff through the socket with stream pumps and scoops.
-```
+``` ruby
 (pump mysock "GET / HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
 (scoop mysock) # returns string of the entire HTTP query with the HTML and everything.
 (clog mysock)
