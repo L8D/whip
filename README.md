@@ -207,6 +207,8 @@ Additionally, you can use streams for file reading and writing with the `well` f
 ```
 
 ### Network IO
+
+#### Sockets
 Sockets are just like duplex streams, but with networks and all that. To create a socket, use the `plug` function like so:
 ``` ruby
 (def mysock (plug "www.google.com" 80)) # mysock is now some random number
@@ -217,4 +219,12 @@ Sending stuff through the socket with stream pumps and scoops.
 (scoop mysock) # returns string of the entire HTTP query with the HTML and everything.
 (clog mysock)
 ```
-...soon an http thingy will be here...soon...
+
+#### HTTP
+Luckily, there is an HTTP function set that automates the whole thingy above.
+The `webvisit` function takes a URI string as it's first argument and returns a string of the recieved file:
+``` ruby
+(webvisit "http://jsonip.com")
+# returns "{"ip":"255.255.255.255",about":"/about","Pro!":"http://getjsonip.com"}"
+```
+<small>I chose to use jsonip.com since it had an index page that is really simple.</small>
