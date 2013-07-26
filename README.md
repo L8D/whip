@@ -33,7 +33,7 @@ Tuples are very similar to Haskell tuples in the case that they have different v
 #### String
 Strings are very similar to Haskell strings, in the case that they are simply arrays consisting of only chars. They are commonly represented by it's corresponding string notation, instead of an actual array of chars.
 
-Vairable Notation
+Value Notation
 -----------------
 
 ### Atoms
@@ -87,8 +87,7 @@ Retrival is the same for every set.
 ```
 
 #### List
-Lists can be declared by simply making a dict that only uses numbers as it's keys.
-The conventional way of making an array automatically assign a number key of the position.
+Lists can be declared by simply making a dict that only uses numbers as it's keys. The conventional way of making an array automatically assign a number key of the position.
 ``` python
 {1:"something" 2:"foo" 3:"var"} # the unconventional way of making an array.
 ["something" "foo" "var"] # the conventional way of making an array
@@ -101,7 +100,7 @@ Strings are very simple and as seen previously.
 ``` python
 {1:'a' 2:'b' 3:'c'}
 # is the same as:
-['a', 'b', 'c']
+['a' 'b' 'c']
 # which is the same as:
 "abc"
 
@@ -110,9 +109,38 @@ Strings are very simple and as seen previously.
 ```
 
 #### Tuple
-Tuples are their own type of set. Though you can cast an array to a tuple.
+Tuples are their own type of set. Though you can cast an array to a tuple. Additionally, the syntax for a tuple require a comma in between to differentiate it from a function call or something.
 ``` python
-('a' 5)
+('a', 5)
 # syntax for casting array, object, or string to tuple is a prefixed grave symbol; like for chars and bools
-`['a' 5] # ('a' 5)
+`['a' 5] # ('a', 5)
+```
+
+Functions and Variables
+-----------------------
+
+### Functions
+Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated.
+
+A function that takes to args and adds them together:
+```
+#    name
+#      |  arguments
+#      |      | returned value
+#      |      |       |
+(def "add" (n1 n2) n1 + n2)
+```
+Now later in our code, when I use the "add" function like so.
+```
+(add 5 5) # represents 10
+```
+
+### Variables
+Variables are a very powerful thing to have. To define a variable, you define a function without any arguments.
+```
+(def "foo" 10)
+```
+Now later in your code, whenever you reference `foo` it will represent 10. Like:
+```
+(add 5 foo) # represents the value of 5 + 10 which is 15
 ```
