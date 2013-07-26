@@ -123,7 +123,7 @@ Functions and Variables
 Another type of variable is a function. Though in your code, a function will represent another type of variable.  To define a function, you use the function `def`. The `def` function takes 3 arguments like so: string, tuple bundle(tuple without commas), value. Where the string is the name of the function, the tuple is a set of args, and the 'value' is any value that will be evaluated.
 
 A function that takes to args and adds them together:
-```
+``` python
 #    name
 #      |  arguments
 #      |      | returned value
@@ -131,16 +131,16 @@ A function that takes to args and adds them together:
 (def "add" (n1 n2) n1 + n2)
 ```
 Now later in our code, when I use the "add" function like so.
-```
+``` python
 (add 5 5) # represents 10
 ```
 
 ### Variables
 Variables are a very powerful thing to have. To define a variable, you define a function without any arguments.
-```
+``` python
 (def "foo" 10)
 ```
 Now later in your code, whenever you reference `foo` it will represent 10. Like:
-```
+``` python
 (add 5 foo) # represents the value of 5 + 10 which is 15
 ```
