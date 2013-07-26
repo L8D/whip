@@ -152,7 +152,7 @@ Semantics
 The `if` function is pretty standard. It takes three args, the first argument is evaluated to a bool, if the bool is true, it returns the 2nd arg, if the bool is false it returns the 3rd arg or nothing if there isn't a 3rd arg.
 Example:
 ``` python
-(if true "this gets returned if true is true" "this gets returned if true is false") # returns "this gets returned if true is true"
+(if true "true is true" "true is false") # returns "true is true"
 ```
 
 ### Loops
