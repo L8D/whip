@@ -1,6 +1,7 @@
 #!/usr/bin/env coffee
 # This is heavily inspired by the Little Lisp Interpreter by Mary Rose Cook
-library = require './lib/stdlib.coffee'
+library = require '../lib/stdlib.coffee'
+fs = require 'fs'
 
 special =
   lambda: (input, context) ->
@@ -92,3 +93,6 @@ interpret_list = (input, context) ->
       list[0].apply undefined, list[1..]
     else
       list
+
+if process.argv.length > 2
+  interpret parse fs.readFileSync(process.argv[2], {encoding: 'utf8'})
