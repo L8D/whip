@@ -206,6 +206,42 @@ Additionally, you can use streams for file reading and writing with the `well` f
 (clog myfile) # closes and writes file
 ```
 
+### Enviroments
+Let's say you need enviroment variables or maybe command line arguments? Well the `enviro` and `lure` variables are at your service.
+
+#### Enviroment variables
+The `enviro` variable is a dictionary of the current shell enviroment variables.
+``` ruby
+(enviro["SHELL"]) # /bin/bash or something of the sort...
+```
+
+####  Command line arguments
+The lure variable is an array of the command line arguments given at runtime. The array starts with the source file regarless of whether it was run like `whip script.whp` or `./script.whp`. **Remember**: lists start at 1.
+``` ruby
+# ./script.whp foo
+(lure[1]) # "./script.whp"
+(lure[2]) # "foo"
+```
+
+#### Standard output, input, and error
+Although you can just use the `/dev/std*` files the same, the `stdout`, `stdin`, and `stderror` are addresses for file reading and writing. **But** you should use them if you want platform independant code(They can be changed depending on your OS/Enviroment).
+
+A simple unix-like concatenation program.
+``` ruby
+(puke stdout (slurp stdin))
+```
+
+#### External resources/libraries
+Something not in the standard library? That's fine. Just use the `require` or `import` functions.
+
+The `require` function imports an imported library for confining to a variable, whereas the `import` function will import a library into the namespace(use import sparingly to avoid flooding). For example:
+``` ruby
+(def "JSON" (require "json"))
+(JSON::parse "{\"name\":\"bob\", \"age\":20") # {"name":"bob" "age":20}
+(import "json")
+(parse "{\"amount\":10}") # {"amount":10"}
+```
+
 ### Network IO
 
 #### Sockets
