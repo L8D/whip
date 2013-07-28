@@ -142,9 +142,21 @@ Example:
 (if true "true is true" "true is false") # returns "true is true"
 ```
 
+### Booleans
+Because the developer is very lasy and didn't want to implement something better, the `both`, `either`, `not` and `equal` functions are similar to `&&`, `||`, `!` and `!=`.
+``` ruby
+(either false (both (not false) true)) # true
+```
+
 ### Loops
 
-##### It's _called_ **recursion**
+##### It's _called_ recursion
+The `self` variable represents the current lambda definition. Also the `parent` variable represents the parent lambda, and the `parentof` function returns the parent of the first argument.
+
+So...
+``` ruby
+(equal (parentof self) parent)
+```
 
 ### Streams
 Streams are represented by a number, and allow for reading and writing to them.
