@@ -143,16 +143,8 @@ Example:
 ```
 
 ### Loops
-Generally if you wanted to loop something over and over, you'd use recursion. But how can you preform recursion upon a lambda for inline-loops?
-The `self` variable represents the lambda you are declaring, and you can use it like so:
-``` ruby
-((def (arr, amt)
-  (if (amt < 10)
-    ((arr << 9001)
-      (amt--)
-      (self arr, amt))
-    arr)) [], 0)
-```
+
+##### It's _called_ **recursion**
 
 ### Streams
 Streams are represented by a number, and allow for reading and writing to them.
