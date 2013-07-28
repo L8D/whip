@@ -222,9 +222,9 @@ Sending stuff through the socket with stream pumps and scoops.
 
 #### HTTP
 Luckily, there is an HTTP function set that automates the whole thingy above.
-The `webvisit` function takes a URI string as it's first argument and returns a string of the recieved file:
+The `tour` function takes a URI string as it's first argument and returns a string of the recieved HTTP file:
 ``` ruby
-(webvisit "http://jsonip.com")
+(tour "http://jsonip.com")
 # returns "{"ip":"255.255.255.255",about":"/about","Pro!":"http://getjsonip.com"}"
 ```
 <small>I chose to use jsonip.com since it had an index page that is really simple.</small>
