@@ -28,5 +28,23 @@ library =
       false
   not: (x) ->
     not x[0]
+  # Lispy stuff
+  '+': (x) ->
+    r = 0
+    r += y for y in x
+    r
+  '-': (x) ->
+    r = x[0]
+    r -= y for y in x[1..]
+    r
+  '*': (x) ->
+    r = x[0]
+    r *= y for y in x[1..]
+    r
+  '/': (x) ->
+    r = x[0]
+    r /= y for y in x[1..]
+    r
+  '=': equal
 
 module.exports = library
