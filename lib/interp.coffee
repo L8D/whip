@@ -1,7 +1,3 @@
-#!/usr/bin/env coffee
-# This is heavily inspired by the Little Lisp Interpreter by Mary Rose Cook
-library = require './lib/stdlib.coffee'
-
 special =
   lambda: (input, context) ->
     (lambda_args...) ->
