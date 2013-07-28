@@ -90,7 +90,7 @@ interpret_list = (input, context) ->
   else
     list = input.map (x) -> interpret x, context
     if list[0] instanceof Function
-      list[0].apply undefined, list[1..]
+      list[0] list[1..]
     else
       list
 
