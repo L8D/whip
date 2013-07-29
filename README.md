@@ -31,19 +31,23 @@ x ; undefined error
 (/ 84 2) ; 84 / 2 => 42
 
 ; comparatives
-(= 10 10) ; true
-(= (! (= 5 10))) ; true
-(| (= 10 10) (= 5 10)) ; true
-(& (= 10 10) (= 5 10)) ; false
-; alternative words for the =, !, |, and & syntax
 (equal 10 10) ; true
-(equal (not (equal 5 10))) ; true
+(not (equal 5 10)) ; true
 (either (equal 10 10) (equal 5 10)) ; true
 (both (equal 10 10) (equal 5 10)) ; false
+; syntax alternatives
+; =: equal
+; !: not
+; ^: either
+; &: both
+(= 10 10) ; true
+(! (= 5 10)) ; true
+(^ (= 10 10) (= 5 10)) ; true
+(& (= 10 10) (= 5 10)) ; false
 
 ; conditionals
 (if true "true was true" "true was false")
-; optional syntax
+; syntactic alternative
 (? (= 10 11) "if true" "if false") ; false
 
 ; comprehensions
@@ -52,8 +56,10 @@ x ; undefined error
 (+ (+ 1 2) 3)
 (map (lambda (x) (+ x 1)) (1 2 3)) ; [2, 3, 4]
 
-; moar functions
-(: 1 (3 4)) ; 4
+; get value at index of list
+(at 1 (1 2)) ; 1
+; syntactic alternative
+(: 2 (3 4)) ; 4
 
 ; printing...
 (print "foo")
