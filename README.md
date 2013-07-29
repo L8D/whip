@@ -52,6 +52,9 @@ x ; undefined error
 (+ (+ 1 2) 3)
 (map (lambda (x) (+ x 1)) (1 2 3)) ; [2, 3, 4]
 
+; moar functions
+(: 1 (3 4)) ; 4
+
 ; printing...
 (print "foo")
 ```
