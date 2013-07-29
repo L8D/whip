@@ -1,4 +1,4 @@
-library =
+exports.library =
   first: (x) -> x[0]
   rest:  (x) -> x[1..]
   print: (x) ->
@@ -28,23 +28,32 @@ library =
       false
   not: (x) ->
     not x[0]
+  wat: (x...) ->
+    console.log x
+  reduce: (a) ->
+    func = a[0]
+    args = a[1]
+    args.reduce (p, x, i) ->
+      func [p, x]
   # Lispy stuff
   '+': (x) ->
-    r = 0
-    r += y for y in x
-    r
+    x[0] + x[1]
   '-': (x) ->
-    r = x[0]
-    r -= y for y in x[1..]
-    r
+    x[0] - x[1]
   '*': (x) ->
-    r = x[0]
-    r *= y for y in x[1..]
-    r
+    x[0] * x[1]
   '/': (x) ->
-    r = x[0]
-    r /= y for y in x[1..]
-    r
-  '=': equal
+    x[0] / x[1]
+  '=': (x) ->
+    if x[0] is x[1] then true else false
 
-module.exports = library
+exports.special =
+  lambda: (input, context) ->
+    (lambda_args...) ->
+      lambda_scope = input[1].reduce (acc, x, i) ->
+        acc[x.value] = lambda_args[i]
+        acc
+
+      interpret input[2], new Context(lambda_scope, context)
+  def: (input, context) ->
+    context.scope[input[1].value] = input[2].value
