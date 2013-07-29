@@ -3,8 +3,42 @@
 fs = require 'fs'
 lib = require '../lib/stdlib.coffee'
 
-special = lib.special
 library = lib.library
+
+special =
+  lambda: (input, context) ->
+    (lambda_args...) ->
+      lambda_scope = input[1].reduce (acc, x, i) ->
+        acc[x.value] = lambda_args[i]
+        acc
+      , {}
+
+      interpret input[2], new Context(lambda_scope, context)
+
+  let: (input, context) ->
+    let_context = input[1].reduce (acc, x) ->
+      acc.scope[x[0].value] = interpret x[1], context
+      acc
+    , new Context({}, context)
+
+    interpret input[2], let_context
+class Context
+  constructor: (scope, parent) ->
+    @scope = scope
+    @parent = parent
+    return
+
+  get: (ident) ->
+    if ident of @scope
+      @scope[ident]
+    else if @parent isnt undefined
+      @parent.get ident
+
+class Var
+  constructor: (type, value) ->
+    @type = type
+    @value = value
+    return
 
 tokenize = (input) ->
   input.split('"')
@@ -20,58 +54,32 @@ tokenize = (input) ->
     .split(/\s+/)
     .map (x) -> x.replace(/!%!/g, " ")
 
-parenthesize = (input, list) ->
-  if list is undefined
-    parenthesize input, []
-  else
-    token = input.shift()
-    switch token
-      when undefined
-        list.pop()
-      when '('
-        list.push parenthesize input, []
-        parenthesize input, list
-      when ')'
-        list
-      else
-        parenthesize input, list.concat categorize token
+parenthesize = (input, list=[]) ->
+  token = input.shift()
+  switch token
+    when undefined
+      list.pop()
+    when '('
+      list.push parenthesize input, []
+      parenthesize input, list
+    when ')'
+      list
+    else
+      parenthesize input, list.concat categorize token
 
 categorize = (input) ->
   if not isNaN parseFloat input
-    {
-      type: 'literal'
-      value: parseFloat input
-    }
+    new Var 'literal', parseFloat input
   else if input[0] is '"' and input[-1..] is '"'
-    {
-      type: 'literal'
-      value: input.slice 1, -1
-    }
+    new Var 'literal', input.slice(1, -1)
   else
-    {
-      type: 'identifier'
-      value: input
-    }
+    new Var 'identifier', input
 
 parse = (input) ->
   parenthesize tokenize input
 
-class Context
-  constructor: (scope, parent) ->
-    @scope = scope
-    @parent = parent
-    return
-
-  get: (ident) ->
-    if ident of @scope
-      @scope[ident]
-    else if @parent isnt undefined
-      @parent.get ident
-
-interpret = (input, context) ->
-  if context is undefined
-    interpret input, new Context(library)
-  else if input instanceof Array
+interpret = (input, context=(new Context library)) ->
+  if input instanceof Array
     interpret_list input, context
   else if input.type is 'identifier'
     context.get input.value
@@ -80,11 +88,11 @@ interpret = (input, context) ->
 
 interpret_list = (input, context) ->
   if input[0].value of special
-    special[input[0].value] input, context
+    special[input[0].value](input, context)
   else
-    list = input.map (x) -> interpret x, context
+    list = input.map (x) -> interpret(x, context)
     if list[0] instanceof Function
-      list[0] list[1..], context
+      list[0] list[1..]
     else
       list
 
