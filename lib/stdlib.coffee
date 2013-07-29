@@ -42,3 +42,5 @@ exports.library =
     x[0] / x[1]
   '=': (x) ->
     if x[0] is x[1] then true else false
+  ':': (x) ->
+    x[1][x[0]]
