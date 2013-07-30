@@ -2,19 +2,26 @@ object_mapper = (obj, fn) -> fn v for v in Object.getOwnPropertyNames obj
 
 convert = (input) ->
   r = []
-  switch true
-    when input instanceof Array
-      r.push (input.map (x) -> convert x).join ' '
-      r.unshift '('
-      r.push ')'
-    when typeof input is 'string'
-      r.push '"' + input + '"'
-    when input instanceof Object
-      object_mapper input, (x) -> r.push "\"#{x}\":#{convert input[x]}"
-      r.unshift '{'
-      r.push '}'
-    else
-      r.push input
+  if input instanceof Array
+    r.push (input.map (x) -> convert x).join ' '
+    r.unshift '('
+    r.push ')'
+  else if typeof input is 'string'
+    r.push '"' + input + '"'
+  else if typeof input is 'function'
+    r.push '(lambda ...)'
+  else if input instanceof Object
+    a = []
+    object_mapper input, (x) -> a.push "\"#{x}\":#{convert input[x]}"
+    r.push a.join ' '
+    r.unshift '{'
+    r.push '}'
+  else if input is null
+    r.push 'null'
+  else if input is undefined
+    r.push 'undefined'
+  else
+    r.push input
   r.join ''
 
 verify = (input) ->
