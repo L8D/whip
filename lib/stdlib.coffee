@@ -6,7 +6,7 @@ fns =
   both:    (x) -> if x[0] then x[1] else x[0]
   equal:   (x) -> x[0] is x[1]
   not:     (x) -> not x[0]
-  append:  (x) -> x[1].push x[0]
+  append:  (x) -> x[1].push x[0]; x[1]
   length:  (x) -> x[0].length
   greater: (x) -> x[0] > x[1]
   lesser:  (x) -> x[0] < x[1]
