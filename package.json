@@ -1,0 +1,27 @@
+{
+  "name": "whip",
+  "version": "0.0.1",
+  "description": "An interpreter for a LISP dialect.",
+  "keywords": [
+    "lisp",
+    "interpreter",
+    "language"
+  ],
+  "homepage": "http://github.com/L8D/Whip",
+  "bugs": "http://github.com/L8D/Whip/issues",
+  "author": "Tenor Biel",
+  "main": "lib",
+  "bin": {
+    "whip": "bin/whip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/L8D/Whip.git"
+  },
+  "dependencies": {
+    "optimist": "0.x.x"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
+}
