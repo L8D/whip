@@ -15,11 +15,20 @@ Usage
 -----
 Running the `whip` command with no arguments will start the REPL interpreter. Otherwise use `whip <filename>` on `.whp` files to execute them.
 ``` bash
-$ echo '(print "Hello, world!")' > hello.whp
-$ whip hello.whp
+$ whip -h
+Usage: whip [option] [filename]
+
+Options:
+  -p  print parsed code and exit
+  -v  print version and exit
+  -h  print this help and exit
+$ whip
+> (print "Hello, world!")
 Hello, world!
+=> "Hello, world!"
+>
 ```
 
 Documentation
 -------------
-See [`doc/whip.lisp`](doc/whip.lisp)
+See [`doc/whip.lisp`](https://github.com/L8D/Whip/blob/master/doc/whip.lisp)
