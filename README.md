@@ -8,6 +8,9 @@ Until I post this to the npm registry, you can install whip by doing:
 git clone https://github.com/L8D/Whip.git && cd Whip && sudo npm install
 ```
 
+Semantics
+---------
+
 See goal.md for details on how the language will eventually be.
 For now, this README will be what I have implemented so far.
 
