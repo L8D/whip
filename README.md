@@ -1,5 +1,5 @@
-Whip: A LISPy language
-======================
+Whip: A Haskellish LISP
+=======================
 
 See goal.md for details on how the language will eventually be.
 For now, this README will be what I have implemented so far.
@@ -17,7 +17,9 @@ For now, this README will be what I have implemented so far.
 ; lambdas
 (lambda (arg1 arg2) (reduce + "part of return value" arg1 arg2))
 ; syntactic alternative is '->'
-((-> (name, item) (reduce + (name " hates " item))) "Bob" "duct tape") ; "Bob hates duct tape"
+((-> (name, item)
+  (reduce + (name " hates " item)))
+    "Bob" "duct tape") ; "Bob hates duct tape"
 
 ; variables
 (let ((x 5) (y 10)) (
@@ -80,4 +82,6 @@ x ; undefined error
 
 ; printing...
 (print "foo")
+
+; additionally there are a plethora of haskell functions
 ```
