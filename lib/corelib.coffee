@@ -2,7 +2,7 @@ whip = require './whip'
 
 fns =
   lambda: (input, context) ->
-    (lambda_args...) ->
+    (lambda_args) ->
       lambda_scope = input[1].reduce (acc, x, i) ->
         acc[x.value] = lambda_args[i]
         acc
