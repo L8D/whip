@@ -3,9 +3,21 @@ Whip: A Haskellish LISP
 
 Install
 -------
-Until I post this to the npm registry, you can install whip by doing:
+You'll need to install node first.
 ``` bash
-git clone https://github.com/L8D/Whip.git && cd Whip && sudo npm install
+# Global
+$ npm install whip -g
+# Local
+$ npm install whip -l
+```
+
+Usage
+-----
+Running the `whip` command with no arguments will start the REPL interpreter. Otherwise use `whip <filename>` on `.whp` files to execute them.
+``` bash
+$ echo '(print "Hello, world!")' > hello.whp
+$ whip hello.whp
+Hello, world!
 ```
 
 Semantics
