@@ -61,7 +61,7 @@ library =
   '%':  (x) -> x[0] % x[1]
 
   '.':  fns.print
-  ':':  fns.at
+  '@':  fns.at
   '?':  fns.if
   '^':  fns.either
   '&':  fns.both

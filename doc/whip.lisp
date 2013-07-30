@@ -44,8 +44,8 @@
 ; The `at` function is act your service
 ; Lists start at 0
 (at 2 (1 2 3)) ; => 2
-; at's shortcut is a :
-(: 0 (42 56 78)) ; => 42
+; at's shortcut is a @
+(@ 0 (42 56 78)) ; => 42
 
 ;; Booleans
 
@@ -124,7 +124,7 @@ foobar ; => (1 2 3)
 ; you can also use numbers...
 {1:42}
 ; to get these values use at
-(: "name" {"name": "bob" "age": 40}) ; => "bob"
+(@ "name" {"name": "bob" "age": 40}) ; => "bob"
 
 ;; Haskell fluff
 (head (1 2 3)) ; => 1
