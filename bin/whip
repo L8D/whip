@@ -1,7 +1,18 @@
 #!/usr/bin/env coffee
 # This is heavily inspired by the Little Lisp Interpreter by Mary Rose Cook
 fs = require 'fs'
+repl = require 'repl'
 whip = require '../lib/whip'
 
 if process.argv.length > 2
   whip.interpret whip.parse fs.readFileSync(process.argv[2], {encoding: 'utf8'})
+else
+  repl.start
+    prompt: '> '
+    eval: (cmd, context, filename, callback) ->
+      unless cmd is '(\n)'
+        cmd = cmd[1..-2]
+        ret = whip.interpret whip.parse cmd
+        callback null, ret
+      else
+        callback null
