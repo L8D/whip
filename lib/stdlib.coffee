@@ -29,6 +29,12 @@ library =
   max:     (a) -> a[0].reduce (x, y) -> if x > y then x else y
   elem:    (x) -> x[0] in x[1]
   reverse: (a) -> a[0].reverse()
+  even:    (x) -> x[0] % 2 is 0
+  odd:     (x) -> x[0] % 2 isnt 0
+  words:   (x) -> x[0].split ' '
+  unwords: (a) -> a[0].join ' '
+  pred:    (x) -> --x[0]
+  succ:    (x) -> ++x[0]
 
   reduce:  (a) -> a[1].reduce (p, x, i) -> a[0] [p, x]
   map:     (a) -> a[1].map (x) -> a[0] [x]
@@ -52,6 +58,7 @@ library =
   '-':  (x) -> x[0] - x[1]
   '*':  (x) -> x[0] * x[1]
   '/':  (x) -> x[0] / x[1]
+  '%':  (x) -> x[0] % x[1]
 
   '.':  fns.print
   ':':  fns.at
@@ -65,6 +72,6 @@ library =
   '>':  fns.greater
   '<':  fns.lesser
   '..': fns.range
-  '%':  fns.slice
+  '\\': fns.slice
 
 module.exports = library
