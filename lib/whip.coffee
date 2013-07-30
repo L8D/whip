@@ -41,8 +41,16 @@ tokenize = (input) ->
     .trim()
     .split(/\s+/)
     .map (x) -> x.replace(/!%!/g, " ")
-  o.unshift '('
-  o.push ')'
+  i = 1
+  for t in o[1..]
+    switch t
+      when '('
+        i++
+        if i is 1
+          o.unshift '('
+          o.push ')'
+          break
+      when ')' then i--
   o
 
 objectize = (input, object = {}, key = true) ->
