@@ -1,5 +1,5 @@
-Whip: A Haskellish LISP
-=======================
+Whip - The Haskellish LISP
+==========================
 
 Install
 -------
