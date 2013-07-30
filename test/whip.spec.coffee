@@ -126,3 +126,16 @@ assert (ip '(let () 42)') is 42
 # should choose the right branch
 assert (ip '(if true 42 420)')
 assert (ip '(if false 42 420)') is 420
+
+# comparatives
+
+# should return true
+# TODO: Expand this sonofabitch
+assert ip '(greater 10 5)'
+assert ip '(lesser 5 10)'
+assert ip '(equal 10 10)'
+assert ip '(not false)'
+assert ip('((-> (x) (<< "bar" x)) ("foo"))').is ['foo', 'bar']
+
+# should return length
+assert ip('(length (1 2))') is 2
