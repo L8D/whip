@@ -124,5 +124,6 @@ interpret_list = (input, context) ->
 
 exports.interpret = interpret
 exports.parse = parse
+exports.tokenize = tokenize
 exports.Context = Context
 exports.Var = Var

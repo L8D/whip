@@ -19,8 +19,9 @@ fns =
     whip.interpret input[2], let_context
 
   def: (input, context) ->
-    context.set input[1].value, whip.interpret input[2]
-    return
+    v = whip.interpret input[2]
+    context.set input[1].value, v
+    v
 
 module.exports = fns
 module.exports['->'] = fns.lambda

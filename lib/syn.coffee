@@ -17,4 +17,13 @@ convert = (input) ->
       r.push input
   r.join ''
 
+verify = (input) ->
+  i = 0
+  for x in input
+    switch x
+      when '(' then i++
+      when ')' then i--
+  i
+
+exports.verify = verify
 exports.convert = convert

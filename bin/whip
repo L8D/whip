@@ -28,14 +28,27 @@ if argv._.length > 0
     console.log whip.parse code
 else
   context = new whip.Context
+  cmdc = 0
+  cmdln = ""
   repl.start
     prompt: '> '
     eval: (cmd, context, filename, callback) ->
       unless cmd is '(\n)'
         cmd = cmd[1..-2]
-        unless argv.p
+        cmdc += syn.verify whip.tokenize cmd
+
+        process.exit() if cmdc < 0
+
+        if cmdc isnt 0
+          cmdln += cmd
+          callback cmdc
+
+        else unless argv.p
+          cmd = cmdln + cmd
+          cmdln = ""
           callback '=> ' + syn.convert whip.interpret whip.parse cmd, context
+
         else
           callback null, whip.parse cmd
       else
-        callback null
+        callback null, (cmdc if cmdc > 0)
