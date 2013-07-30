@@ -112,6 +112,7 @@ interpret = (input, context=(new Context library)) ->
     input.value
 
 interpret_list = (input, context) ->
+  return if input.length is 0
   if input[0].value of special
     special[input[0].value](input, context)
   else
