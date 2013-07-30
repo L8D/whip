@@ -2,30 +2,12 @@ fns =
   print: (x, c) ->
     console.log y for y in x
     x
-  at: (x) ->
-    x[1][x[0] - 1]
-  if: (x) ->
-    if x[0]
-      x[1]
-    else
-      x[2]
-  either: (x) ->
-    if x[0]
-      x[1]
-    else
-      x[0]
-  both: (x) ->
-    if x[0]
-      x[1]
-    else
-      x[0]
-  equal: (x) ->
-    if x[0] is x[1]
-      true
-    else
-      false
-  not: (x) ->
-    not x[0]
+  at:     (x) -> x[1][x[0] - 1]
+  if:     (x) -> if x[0] then x[1] else x[2]
+  either: (x) -> if x[0] then x[0] else x[1]
+  both:   (x) -> if x[0] then x[1] else x[0]
+  equal:  (x) -> x[0] is x[1]
+  not:    (x) -> not x[0]
 
 library =
   lure:   process.argv
