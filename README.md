@@ -17,7 +17,7 @@ For now, this README will be what I have implemented so far.
 ; lambdas
 (lambda (arg1 arg2) (reduce + "part of return value" arg1 arg2))
 ; syntactic alternative is '->'
-((-> (name, item) (reduce + name " hates " item)) "Bob" "duct tape") ; "Bob hates duct tape"
+((-> (name, item) (reduce + (name " hates " item))) "Bob" "duct tape") ; "Bob hates duct tape"
 
 ; variables
 (let ((x 5) (y 10)) (
@@ -33,15 +33,21 @@ x ; undefined error
 
 ; comparatives
 (equal 10 10) ; true
+(greater 10 5) ; true
+(lesser 5 10) ; true
 (not (equal 5 10)) ; true
 (either (equal 10 10) (equal 5 10)) ; true
 (both (equal 10 10) (equal 5 10)) ; false
 ; syntax alternatives
 ; =: equal
+; >: greater
+; <: lesser
 ; !: not
 ; ^: either
 ; &: both
 (= 10 10) ; true
+(> 10 5) ; true
+(< 5 10) ; true
 (! (= 5 10)) ; true
 (^ (= 10 10) (= 5 10)) ; true
 (& (= 10 10) (= 5 10)) ; false
@@ -61,6 +67,16 @@ x ; undefined error
 (at 1 (1 2)) ; 1
 ; syntactic alternative
 (: 2 (3 4)) ; 4
+
+; append to array
+(append 5 (1 2 3 4)) ; [1, 2, 3, 4, 5]
+; syntactic alternative
+(<< "bar" ("foo")) ; ["foo", "bar"]
+
+; length of an array
+(length (1 2)) ; 2
+; syntactic alternative
+(_ (1 2 3 4 5)) ; 5
 
 ; printing...
 (print "foo")
