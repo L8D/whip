@@ -13,6 +13,12 @@ class Context
     else if @parent isnt undefined
       @parent.get ident
 
+  set: (ident, value) ->
+    if @parnet is undefined
+      @scope[ident] = value
+    else
+      @parent.set ident, value
+
 class Var
   constructor: (type, value) ->
     @type = type
@@ -20,7 +26,7 @@ class Var
     return
 
 tokenize = (input) ->
-  input.split('"')
+  o = input.split('"')
     .map((x, i) ->
       if i % 2 is 0 # not in string
         x.replace(/\(/g, ' ( ')
@@ -35,6 +41,9 @@ tokenize = (input) ->
     .trim()
     .split(/\s+/)
     .map (x) -> x.replace(/!%!/g, " ")
+  o.unshift '('
+  o.push ')'
+  o
 
 objectize = (input, object = {}, key = true) ->
   token = input.shift()

@@ -78,6 +78,13 @@
 ((-> () "foo")) ; => "foo"
 ((-> (x) (+ x 1)) 1) ; = 1 + 1 => 2
 
+;; Variables
+; use def to set a global variable
+(def foobar (1 2 3))
+foobar ; => (1 2 3)
+; use let to define a variable inside a scope
+(let ((x 10) (y 10)) (x)) ; => 10
+
 ;; Comprehensions
 
 ; Range
