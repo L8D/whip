@@ -16,7 +16,8 @@ For now, this README will be what I have implemented so far.
 
 ; lambdas
 (lambda (arg1 arg2) (reduce + "part of return value" arg1 arg2))
-((lambda (name, item) (reduce + name " hates " item)) "Bob" "duct tape")
+; syntactic alternative is '->'
+((-> (name, item) (reduce + name " hates " item)) "Bob" "duct tape") ; "Bob hates duct tape"
 
 ; variables
 (let ((x 5) (y 10)) (
