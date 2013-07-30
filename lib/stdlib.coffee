@@ -1,6 +1,6 @@
 fns =
   print:   (x) -> console.log x[0]; x[0]
-  at:      (x) -> x[1][x[0] - 1]
+  at:      (x) -> x[1][x[0]]
   if:      (x) -> if x[0] then x[1] else x[2]
   either:  (x) -> if x[0] then x[0] else x[1]
   both:    (x) -> if x[0] then x[1] else x[0]

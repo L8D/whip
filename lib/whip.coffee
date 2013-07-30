@@ -24,7 +24,10 @@ tokenize = (input) ->
     .map((x, i) ->
       if i % 2 is 0 # not in string
         x.replace(/\(/g, ' ( ')
-          .replace /\)/g, ' ) '
+          .replace(/\)/g, ' ) ')
+          .replace(/\{/g, ' { ')
+          .replace(/\}/g, ' } ')
+          .replace(/:/g, ' : ')
       else
         x.replace /\s/g, "!%!"
     )
@@ -33,16 +36,35 @@ tokenize = (input) ->
     .split(/\s+/)
     .map (x) -> x.replace(/!%!/g, " ")
 
-parenthesize = (input, list=[]) ->
+objectize = (input, object = {}, key = true) ->
+  token = input.shift()
+  if token is '}'
+    categorize object
+  else if token is ':'
+    objectize input, object, false
+  else if key
+    object[categorize(token).value] = objectize input, object
+    objectize input, object, true
+  else
+    if token is '('
+      parenthesize token
+    else
+      categorize token
+
+
+parenthesize = (input, list = []) ->
   token = input.shift()
   switch token
     when undefined
       list.pop()
     when '('
-      list.push parenthesize input, []
+      list.push parenthesize input
       parenthesize input, list
     when ')'
       list
+    when '{'
+      list.push objectize input
+      parenthesize input, list
     else
       parenthesize input, list.concat categorize token
 
@@ -51,17 +73,24 @@ categorize = (input) ->
     new Var 'literal', parseFloat input
   else if input[0] is '"' and input[-1..] is '"'
     new Var 'literal', input.slice(1, -1)
+  else if input instanceof Object
+    new Var 'dict', input
   else
     new Var 'identifier', input
 
 parse = (input) ->
   parenthesize tokenize input
 
+object_mapper = (obj, fn) -> fn v for v in Object.getOwnPropertyNames obj
+
 interpret = (input, context=(new Context library)) ->
   if input instanceof Array
     interpret_list input, context
   else if input.type is 'identifier'
     context.get input.value
+  else if input.type is 'dict'
+    object_mapper input.value, (x) -> input.value[x] = interpret input.value[x]
+    input.value
   else
     input.value
 
