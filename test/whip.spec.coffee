@@ -1,5 +1,5 @@
 assert = require 'assert'
-w = require './lib/whip'
+w = require '../lib/whip'
 
 is_a = (input, type) ->
   Object::toString.call(input) is "[object #{type}]"
