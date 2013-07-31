@@ -7,9 +7,9 @@ convert = (input) ->
     r.unshift '('
     r.push ')'
   else if typeof input is 'string'
-    r.push '"' + input + '"'
+    r.push '"' + input.replace(/\n/g, '\\n') + '"'
   else if typeof input is 'function'
-    r.push '(lambda ...)'
+    r.push '(-> ...)'
   else if input instanceof Object
     a = []
     object_mapper input, (x) -> a.push "\"#{x}\":#{convert input[x]}"
@@ -28,8 +28,8 @@ verify = (input) ->
   i = 0
   for x in input
     switch x
-      when '(' then i++
-      when ')' then i--
+      when '(', '{' then i++
+      when ')', '}' then i--
   i
 
 exports.verify = verify

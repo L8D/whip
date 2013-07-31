@@ -5,10 +5,11 @@ repl = require 'repl'
 whip = require '../lib/whip'
 syn  = require '../lib/syn'
 args = require('optimist')
-  .usage('Usage: $0 -vp [filename]')
+  .usage('Usage: $0 -vlp [filename]')
   .describe('p', 'print parsed code and exit')
   .describe('v', 'print version and exit')
   .describe('h', 'print this help and exit')
+  .describe('l', 'use util.inspect for return values instead of syntax converter for REPL')
 
 argv = args.argv
 
@@ -46,7 +47,10 @@ else
         else unless argv.p
           cmd = cmdln + cmd
           cmdln = ""
-          callback '=> ' + syn.convert whip.interpret whip.parse cmd, context
+          if argv.l
+            callback null, whip.interpret whip.parse cmd, context
+          else
+            callback '=> ' + syn.convert whip.interpret whip.parse cmd, context
 
         else
           callback null, whip.parse cmd

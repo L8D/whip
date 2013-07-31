@@ -26,7 +26,11 @@ class Var
     return
 
 tokenize = (input) ->
-  o = input.split('"')
+  o = input
+    .replace(/\\"/g, "!dquote!")
+    .replace(/' '/g, "'!space!'")
+    .replace(/\\'/g, "!squote!")
+    .split(/"/)
     .map((x, i) ->
       if i % 2 is 0 # not in string
         x.replace(/\(/g, ' ( ')
@@ -35,12 +39,15 @@ tokenize = (input) ->
           .replace(/\}/g, ' } ')
           .replace(/:/g, ' : ')
       else
-        x.replace /\s/g, "!%!"
+        x.replace /\s/g, "!space!"
     )
     .join('"')
     .trim()
     .split(/\s+/)
-    .map (x) -> x.replace(/!%!/g, " ")
+    .map (x) -> x
+      .replace(/!space!/g, " ")
+      .replace(/!dquote!/g, '\\"')
+      .replace(/!squote!/g, "\\'")
   i = 1
   for t in o[1..]
     switch t
@@ -89,7 +96,10 @@ categorize = (input) ->
   if not isNaN parseFloat input
     new Var 'literal', parseFloat input
   else if input[0] is '"' and input[-1..] is '"'
-    new Var 'literal', input.slice(1, -1)
+    new Var 'literal', eval input
+  else if input[0] is "'" and input[-1..] is "'"
+    s = eval input
+    new Var 'literal', s if s.length is 1
   else if input instanceof Object
     new Var 'dict', input
   else

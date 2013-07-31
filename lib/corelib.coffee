@@ -3,12 +3,15 @@ whip = require './whip'
 fns =
   lambda: (input, context) ->
     (lambda_args) ->
-      lambda_scope = input[1].reduce (acc, x, i) ->
-        acc[x.value] = lambda_args[i]
-        acc
-      , {}
+      unless input.length is 2
+        lambda_scope = input[1].reduce (acc, x, i) ->
+          acc[x.value] = lambda_args[i]
+          acc
+        , {}
+      else
+        lambda_scope = {}
 
-      whip.interpret input[2], new whip.Context(lambda_scope, context)
+      whip.interpret input[input.length - 1], new whip.Context(lambda_scope, context)
 
   let: (input, context) ->
     let_context = input[1].reduce (acc, x) ->
