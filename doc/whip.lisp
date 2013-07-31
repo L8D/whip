@@ -5,6 +5,9 @@
 not_in_form
 (in_form)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 1. Numbers, Strings, and Operators
+
 ; Whip has one number type (which is a 64-bit IEEE 754 double, from JavaScript).
 3 ; => 3
 1.5 ; => 1.5
@@ -23,7 +26,7 @@ not_in_form
 ; JavaScript-style uneven division.
 (/ 5 2) ; => 2.5
 
-; Nesting forms words as you expect.
+; Nesting forms works as you expect.
 (* 2 (+ 1 3)) ; => 8
 
 ; There's a boolean type.
@@ -74,6 +77,9 @@ false
 null ; used to indicate a deliberate non-value
 undefined ; user to indicate a value that hasn't been set
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 2. Vairbles, Lists, and Dicts
+
 ; Variables are declared with the `def` or `let` functions.
 ; Variab;es that haven't been set will be `undefined`.
 (def some_var 5)
@@ -104,7 +110,8 @@ undefined ; user to indicate a value that hasn't been set
 ; Dictionary definitions can be accessed used the `at` function, like strings and lists.
 (@ "my other key" my_dict) ; => 4
 
-; Logic and control structures
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 3. Logic and Control sequences
 
 ; The `if` function is pretty simple, though different than most imperitave langs.
 (if true "returned if first arg is true" "returned if first arg is false")
@@ -125,6 +132,7 @@ undefined ; user to indicate a value that hasn't been set
 (& true true) ; => true
 (^ false true) ; => true
 
+;;;;;;;;;
 ; Lambdas
 
 ; Lambdas in Whip are declared with the `lambda` or `->` function.
@@ -143,7 +151,8 @@ undefined ; user to indicate a value that hasn't been set
 ; technically always used anonymouesly. Redundancy.
 ((lambda (x) x) 10) ; => 10
 
-;;; Comprehensive functions
+;;;;;;;;;;;;;;;;
+; Comprehensions
 
 ; `range` or `..` generates a list of numbers for
 ; each number between it's two args.
@@ -162,6 +171,7 @@ undefined ; user to indicate a value that hasn't been set
 ; Note: map and reduce don't have shortcuts
 
 ; `slice` or `\` is just like JavaScript's .slice()
+; But do note, it takes the list as the first argument, not the last.
 (slice (.. 1 5) 2) ; => (3 4 5)
 (\ (.. 0 100) -5) ; => (96 97 98 99 100)
 
@@ -173,22 +183,37 @@ undefined ; user to indicate a value that hasn't been set
 (length (1 2 3)) ; => 3
 (_ "foobar") ; => 6
 
-;;; Haskell fluff
+;;;;;;;;;;;;;;;
+; Haskell fluff
+
+; First item in list
 (head (1 2 3)) ; => 1
+; List from second to last elements in list
 (tail (1 2 3)) ; => (2 3)
+; Last item in list
 (last (1 2 3)) ; => 3
+; Reverse of `tail`
 (init (1 2 3)) ; => (1 2)
+; List from first to specified elements in list
 (take 1 (1 2 3 4)) ; (1 2)
+; Reverse of `take`
 (drop 1 (1 2 3 4)) ; (3 4)
+; Lowest value in list
 (min (1 2 3 4)) ; 1
+; Highest value in list
 (max (1 2 3 4)) ; 4
+; If value is in list or object
 (elem 1 (1 2 3)) ; true
 (elem "foo" {"foo":"bar"}) ; true
 (elem "bar" {"foo":"bar"}) ; false
+; Reverse list order
 (reverse (1 2 3 4)) ; => (4 3 2 1)
+; If value is even or odd
 (even 1) ; => false
 (odd 1) ; => true
+; Split string into list of strings by whitespace
 (words "foobar nachos cheese") ; => ("foobar" "nachos" "cheese")
+; Join list of strings together.
 (unwords ("foo" "bar")) ; => "foobar"
 (pred 21) ; => 20
 (succ 20) ; => 21
