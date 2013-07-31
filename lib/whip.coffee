@@ -28,8 +28,7 @@ class Var
 tokenize = (input) ->
   o = input
     .replace(/\\"/g, "!dquote!")
-    .replace(/' '/g, "'!space!'")
-    .replace(/\\'/g, "!squote!")
+    .replace(/\s+' '\s+/g, "'!space!'")
     .split(/"/)
     .map((x, i) ->
       if i % 2 is 0 # not in string
