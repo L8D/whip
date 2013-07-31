@@ -22,7 +22,7 @@ if argv.v
   process.exit()
 
 if argv._.length > 0
-  code = fs.readFileSync(argv._, {encoding: 'utf8'})
+  code = fs.readFileSync(argv._[0], {encoding: 'utf8'})
   unless argv.p
     whip.interpret whip.parse code
   else
