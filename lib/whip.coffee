@@ -32,7 +32,9 @@ tokenize = (input) ->
     .split(/"/)
     .map((x, i) ->
       if i % 2 is 0 # not in string
-        x.replace(/\(/g, ' ( ')
+        x
+          .replace(/;.*(\n|\z)/, '') # comment
+          .replace(/\(/g, ' ( ')
           .replace(/\)/g, ' ) ')
           .replace(/\{/g, ' { ')
           .replace(/\}/g, ' } ')
