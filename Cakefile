@@ -159,9 +159,6 @@ build = (watch, callback) ->
   options = options.concat files
   options.unshift '-w' if watch
   launch 'coffee', options, callback
-  # Semi-hackish way of doing things...
-  fs.mkdir 'bin', callback
-  fs.link 'lib/bin.js', 'bin/whip', callback
 
 # ## *unlinkIfCoffeeFile*
 #
