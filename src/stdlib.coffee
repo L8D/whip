@@ -1,4 +1,10 @@
 fns =
+  add:  (x) -> x[0] + x[1]
+  sub:  (x) -> x[0] - x[1]
+  mult: (x) -> x[0] * x[1]
+  div:  (x) -> x[0] / x[1]
+  mod:  (x) -> x[0] % x[1]
+
   print:   (x) -> console.log x[0]; x[0]
   prints:  (x) -> process.stdout.write x[0]; x[0]
   at:      (x) -> x[1][x[0]]
@@ -40,6 +46,12 @@ library =
   reduce:  (a) -> a[1].reduce (p, x, i) -> a[0] [p, x]
   map:     (a) -> a[1].map (x) -> a[0] [x]
 
+  add:     fns.add
+  sub:     fns.sub
+  mult:    fns.mult
+  div:     fns.div
+  mod:     fns.mod
+
   print:   fns.print
   prints:  fns.prints
   at:      fns.at
@@ -56,11 +68,11 @@ library =
   slice:   fns.slice
 
   # Lispy stuff and shortcuts
-  '+':  (x) -> x[0] + x[1]
-  '-':  (x) -> x[0] - x[1]
-  '*':  (x) -> x[0] * x[1]
-  '/':  (x) -> x[0] / x[1]
-  '%':  (x) -> x[0] % x[1]
+  '+':  fns.add
+  '-':  fns.sub
+  '*':  fns.mult
+  '/':  fns.div
+  '%':  fns.mod
 
   '.':  fns.print
   '._': fns.prints
