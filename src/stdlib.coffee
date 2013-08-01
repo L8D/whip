@@ -1,5 +1,6 @@
 fns =
   print:   (x) -> console.log x[0]; x[0]
+  prints:  (x) -> process.stdout.write x[0]; x[0]
   at:      (x) -> x[1][x[0]]
   if:      (x) -> if x[0] then x[1] else x[2]
   either:  (x) -> if x[0] then x[0] else x[1]
@@ -40,6 +41,7 @@ library =
   map:     (a) -> a[1].map (x) -> a[0] [x]
 
   print:   fns.print
+  prints:  fns.prints
   at:      fns.at
   if:      fns.if
   either:  fns.either
@@ -61,6 +63,7 @@ library =
   '%':  (x) -> x[0] % x[1]
 
   '.':  fns.print
+  '._': fns.prints
   '@':  fns.at
   '?':  fns.if
   '^':  fns.either
