@@ -7,7 +7,10 @@ convert = (input) ->
     r.unshift '('
     r.push ')'
   else if typeof input is 'string'
-    r.push '"' + input.replace(/\n/g, '\\n') + '"'
+    unless input.length == 1
+      r.push '"' + input.replace(/\n/g, '\\n') + '"'
+    else
+      r.push "'" + input.replace(/\n/g, '\\n') + "'"
   else if typeof input is 'function'
     r.push '(-> ...)'
   else if input instanceof Object
