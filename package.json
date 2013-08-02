@@ -18,6 +18,10 @@
     "type": "git",
     "url": "git://github.com/L8D/Whip.git"
   },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
+  },
   "dependencies": {
     "optimist": "0.6.x"
   },
