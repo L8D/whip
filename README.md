@@ -5,10 +5,16 @@ Install
 -------
 You'll need to install node first.
 ``` bash
-# Global
 $ npm install whip -g
-# Local
-$ npm install whip -l
+```
+If you want to get the most up-to-date build, then clone this directory and build from source.
+``` bash
+$ git clone https://github.com/L8D/Whip.git
+# ...
+$ cd Whip
+$ cake build
+:)
+$ sudo npm install -g
 ```
 
 Usage
