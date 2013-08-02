@@ -8,7 +8,7 @@ You'll need to install node first.
 # Global
 $ npm install whip -g
 # Local
-$ npm install whip -l
+$ npm install whip
 ```
 
 Usage
