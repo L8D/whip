@@ -168,7 +168,7 @@ build = (watch, callback) ->
 # **and** remove the result
 unlinkIfCoffeeFile = (file) ->
   if file.match /\.coffee$/
-    fs.unlink file.replace(/\.coffee$/, '.js'), ->
+    fs.unlink file.replace(/\.coffee$/, '.js').replace(/^src/, 'lib'), -> (err) -> throw err if err
     true
   else false
 
