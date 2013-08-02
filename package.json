@@ -12,7 +12,7 @@
   "author": "Tenor Biel",
   "main": "lib",
   "bin": {
-    "whip": "lib/bin.js"
+    "whip": "src/bin.js"
   },
   "repository": {
     "type": "git",
