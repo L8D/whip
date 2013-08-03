@@ -1,30 +1,55 @@
+# Whip interpreter
+# ===============
+
 library = require './stdlib'
 special = require './corelib'
 
+# ### Context class
+# The `Context` class is used for maintaining context's and scopes
+# of defined variables.
+#
+# It's constructor takes two args, and binds them to the scope
+# and parent attributes. The scope should be an object with keys
+# representing variable names, the parent should be another instance
+# of a `Context` to maintain scopes. The parent though isn't required
+# to properly create and use the `Context` class.
 class Context
-  constructor: (scope, parent) ->
-    @scope = scope
-    @parent = parent
-    return
+  constructor: (@scope, @parent) ->
 
+  # #### Get
+  # Takes an identifier string and returns the value from the scope.
+  # However if it can't find that value, it attempts to call `get` on
+  # the parent context and return that result.
   get: (ident) ->
     if ident of @scope
       @scope[ident]
     else if @parent isnt undefined
       @parent.get ident
 
+  # #### Set
+  # Takes and identifier and value.
+  # If there is no parent context, it maps the value to the identifier
+  # in the scope. If there is a parent, it calls `set` on that instead.
+  #
+  # This method is only used by the core library function `def`.
   set: (ident, value) ->
     if @parnet is undefined
       @scope[ident] = value
     else
       @parent.set ident, value
 
+# ### Var class
+# This class is simply used to better keep track of variables
+# and for the future if we need to easily edit stuff.
 class Var
-  constructor: (type, value) ->
-    @type = type
-    @value = value
-    return
+  constructor: (@type, @value) ->
 
+# ## Tokenize
+# The `tokenize` function takes input and returns an array
+# of tokens representing each instruction part.
+#
+# It also attempts to add surrounding parens if it detects that there
+# are multiple forms in the global scope.
 tokenize = (input) ->
   o = input
     .replace(/\\"/g, "!dquote!")
@@ -61,6 +86,11 @@ tokenize = (input) ->
       when ')' then i--
   o
 
+# ## Objectize
+# Returns an object deciphered from output of `tokenize`.
+#
+# Whip's dicitonary syntax is `key`, `:`, `value` and then
+# whitespace between each definition.
 objectize = (input, object = {}, key = true) ->
   token = input.shift()
   if token is '}'
@@ -77,6 +107,8 @@ objectize = (input, object = {}, key = true) ->
       categorize token
 
 
+# ## Parenthesize
+# Returns an array deciphered from output of `tokenize`.
 parenthesize = (input, list = []) ->
   token = input.shift()
   switch token
@@ -93,6 +125,9 @@ parenthesize = (input, list = []) ->
     else
       parenthesize input, list.concat categorize token
 
+# ## Categorize
+# Returns `Var` instance from output of `tokenize`.
+# Primarily used by `parenthesize` and `objectize`.
 categorize = (input) ->
   if not isNaN parseFloat input
     new Var 'literal', parseFloat input
@@ -106,11 +141,15 @@ categorize = (input) ->
   else
     new Var 'identifier', input
 
+# ## Parse
+# Wrapper for returned parsed output of input.
 parse = (input) ->
   parenthesize tokenize input
 
 object_mapper = (obj, fn) -> fn v for v in Object.getOwnPropertyNames obj
 
+# ## Interpret
+# Returns value based on parsed information.
 interpret = (input, context=(new Context library)) ->
   if input instanceof Array
     interpret_list input, context
@@ -122,6 +161,8 @@ interpret = (input, context=(new Context library)) ->
   else
     input.value
 
+# ## Interpret List
+# I'm tired...
 interpret_list = (input, context) ->
   return if input.length is 0
   if input[0].value of special
