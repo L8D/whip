@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Whip - The Haskellish LISP</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="docs/public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docs/docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+      <div class="header">
+          <h1>Whip - The Haskellish LISP</h1>
+      </div>
+        <h2>Install</h2>
+        <p>You&#39;ll need to install node first.</p>
+<pre><code class="lang-bash">$ npm install whip -g</code></pre>
+<p>If you want to get the most up-to-date build, then clone this directory and build from source.</p>
+<pre><code class="lang-bash">$ git clone https://github.com/L8D/Whip.git
+# ...
+$ cd Whip
+$ cake build
+:)
+$ sudo npm install -g</code></pre>
+<h2>Usage</h2>
+        <p>Running the <code>whip</code> command with no arguments will start the REPL interpreter. Otherwise use <code>whip &lt;filename&gt;</code> on <code>.whp</code> files to execute them.</p>
+<pre><code class="lang-bash">$ whip -h
+Usage: whip [option] [filename]
+
+Options:
+-p  print parsed code and exit
+-v  print version and exit
+-h  print this help and exit
+$ whip
+&gt; (print &quot;Hello, world!&quot;)
+Hello, world!
+=&gt; &quot;Hello, world!&quot;
+&gt;</code></pre>
+<h2>Documentation</h2>
+        <p>See <a href="https://github.com/L8D/Whip/blob/master/doc/whip.lisp"><code>doc/whip.lisp</code></a></p>
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
