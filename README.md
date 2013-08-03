@@ -37,4 +37,5 @@ Hello, world!
 
 Documentation
 -------------
-See [`doc/whip.lisp`](https://github.com/L8D/Whip/blob/master/doc/whip.lisp)
+These are the official documentation, see [these](/docs/whip.html) for source code documentation.
+For a whirlwind tour, see [this](http://learnxinyminutes.com/docs/whip/) great learnXinYminutes.com post.
