@@ -1,5 +1,8 @@
-Whip - The Haskellish LISP
-==========================
+Whip
+====
+[![NPM version](https://badge.fury.io/js/whip.png)](http://badge.fury.io/js/whip) [![Build Status](https://travis-ci.org/L8D/whip.png?branch=master)](https://travis-ci.org/L8D/whip)
+
+Haskellish LISP dialect.
 
 Install
 -------
