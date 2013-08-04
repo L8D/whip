@@ -7,3 +7,6 @@
 .svn
 .wafpickle-*
 CVS
+index.html
+docco.css
+public
