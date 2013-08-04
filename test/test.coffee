@@ -21,7 +21,7 @@ ip = (input) -> w.interpret w.parse input
 describe 'Whip', ->
   describe 'parser', ->
     it 'should lex a single atom', ->
-      'a'.should.eql w.parse('a').value
+      'a'.should.equal w.parse('a').value
 
     it 'should lex an atom in a list', ->
       [].should.eql unan w.parse '()'
@@ -58,29 +58,29 @@ describe 'Whip', ->
 
     describe 'atoms', ->
       it 'should return string atom', ->
-         ip('"a"').should.eql 'a'
+         ip('"a"').should.equal 'a'
 
       it 'should return string with space atom', ->
-          ip('"a b"').should.eql 'a b'
+          ip('"a b"').should.equal 'a b'
 
       it 'should return string with opening paren', ->
-         ip('"(a"').should.eql '(a'
+         ip('"(a"').should.equal '(a'
 
       it 'should return string with closing paren', ->
-         ip('")a"').should.eql ')a'
+         ip('")a"').should.equal ')a'
 
       it 'should return string with parens', ->
-         ip('"(a)"').should.eql '(a)'
+         ip('"(a)"').should.equal '(a)'
 
       it 'should return number atom', ->
-         ip('123').should.eql 123
+         ip('123').should.equal 123
 
     describe 'invocation', ->
       it 'should run print on an int', ->
-         ip('(print 1)').should.eql 1
+         ip('(print 1)').should.equal 1
 
       it 'should return first element of list', ->
-         ip('(head (1 2 3))').should.eql 1
+         ip('(head (1 2 3))').should.equal 1
 
       it 'should return rest of list', ->
          ip('(tail (1 2 3))').should.eql [2, 3]
@@ -92,7 +92,7 @@ describe 'Whip', ->
          ip('((lambda (tail (1 2))))').should.eql [2]
 
       it 'should return correct result for lambda that takes and returns arg', ->
-         ip('((lambda (x) x) 1)').should.eql 1
+         ip('((lambda (x) x) 1)').should.equal 1
 
       it 'should return correct result for lambda that returns list of vars', ->
          ip('((lambda (x y) (x y)) 1 2)').should.eql [1, 2]
@@ -101,7 +101,7 @@ describe 'Whip', ->
          ip('((lambda (x y) (0 x y)) 1 2)').should.eql [0, 1, 2]
 
       it 'should return correct result when invoke lambda w params', ->
-         ip('((lambda (x) (head (x))) 1)').should.eql 1
+         ip('((lambda (x) (head (x))) 1)').should.equal 1
 
     describe 'let', ->
       it 'should eval inner expression w names bound', ->
@@ -113,12 +113,12 @@ describe 'Whip', ->
          ip('(let ((x 1) (y x)) (x y))').should.eql [1, undefined]
 
       it 'should accept empty binding list', ->
-         ip('(let () 42)').should.eql 42
+         ip('(let () 42)').should.equal 42
 
     describe 'if', ->
       it 'should choose the right branch', ->
-         ip('(if true 42 4711)').should.eql 42
-         ip('(if false 42 4711)').should.eql 4711
+         ip('(if true 42 4711)').should.equal 42
+         ip('(if false 42 4711)').should.equal 4711
 
     describe 'dictionaries', ->
       it 'should generate dictionary with keys and values', ->
@@ -127,19 +127,19 @@ describe 'Whip', ->
 describe 'stdlib', ->
   describe 'arithmetic', ->
     it 'should add two float lits', ->
-       ip('(+ 2.5 2.5)').should.eql 5
+       ip('(+ 2.5 2.5)').should.equal 5
 
     it 'should subtract two number lits', ->
-       ip('(- 10 5)').should.eql 5
+       ip('(- 10 5)').should.equal 5
 
     it 'should multiply two number lits', ->
-       ip('(* 5 5)').should.eql 25
+       ip('(* 5 5)').should.equal 25
 
     it 'should divide two number lits', ->
-       ip('(/ 25 5)').should.eql 5
+       ip('(/ 25 5)').should.equal 5
 
     it 'should modulo two number lits', ->
-       ip('(% 19 7)').should.eql 5
+       ip('(% 19 7)').should.equal 5
 
     it 'should compare greatness of two number lits', ->
       ip('(> 5 1)').should.be.true
@@ -147,10 +147,10 @@ describe 'stdlib', ->
 
     describe 'type coercion', ->
       it 'should concatenate two strings', ->
-         ip('(+ "foo " "bar")').should.eql 'foo bar'
+         ip('(+ "foo " "bar")').should.equal 'foo bar'
 
       it 'should generate javascript-ruled string', ->
-         ip('(+ 5 "5")').should.eql '55'
+         ip('(+ 5 "5")').should.equal '55'
 
   describe 'boolean expressions', ->
     it 'should evaluate not false to true', ->
@@ -177,20 +177,20 @@ describe 'stdlib', ->
 
   describe 'indexing', ->
     it 'should find value of list from index', ->
-      ip('(@ 1 (1 2 3))').should.eql 2
+      ip('(@ 1 (1 2 3))').should.equal 2
 
     it 'should find attribute of dict from index', ->
-      ip('(@ "key1" {"key0":"foo" "key1":42 key2:false})').should.eql 42
+      ip('(@ "key1" {"key0":"foo" "key1":42 key2:false})').should.equal 42
 
     it 'should find letter of string from index', ->
-      ip('(@ 3 "foobar")').should.eql 'b'
+      ip('(@ 3 "foobar")').should.equal 'b'
 
     describe 'lengths', ->
       it 'should get length of string', ->
-        ip('(_ "foobar")').should.eql 6
+        ip('(_ "foobar")').should.equal 6
 
       it 'should get length of list', ->
-        ip('(_ (1 2 3))').should.eql 3
+        ip('(_ (1 2 3))').should.equal 3
 
       it 'should not any get length of dict', ->
         should.not.exist ip('(_ {0:0 1:1})')
@@ -200,3 +200,11 @@ describe 'stdlib', ->
         ip('(\\ (.. 1 100) -5)').should.eql [96, 97, 98, 99, 100]
 
   # TODO: Haskell functions, map, and reduce functions
+
+describe 'JSON lib', ->
+  describe 'harvest function', ->
+    it 'should parse JSON strings and numbers', ->
+      ip('(harvest "{\\"key\\":\\"value\\", \\"key2\\":42}")')
+        .should.eql key: 'value', key2: 42
+    it 'should parse JSON containing null', ->
+      should.not.exist ip('(harvest "{\\"foo\\": null}")').foo
