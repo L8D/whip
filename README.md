@@ -9,9 +9,9 @@ $ npm install whip -g
 ```
 If you want to get the most up-to-date build, then clone this directory and build from source.
 ``` bash
-$ git clone https://github.com/L8D/Whip.git
+$ git clone https://github.com/L8D/whip.git
 # ...
-$ cd Whip
+$ cd whip
 $ cake build
 :)
 $ sudo npm install -g
@@ -37,5 +37,5 @@ Hello, world!
 
 Documentation
 -------------
-Official documentation at [https://L8D.github.io/Whip](https://L8D.github.io/Whip) with [source files](https://L8D.github.io/Whip/docs/whip).
+Official documentation at [https://L8D.github.io/whip](https://L8D.github.io/whip) with [source files](https://L8D.github.io/Whip/docs/whip).
 For a whirlwind tour, see [this](http://learnxinyminutes.com/docs/whip/) great learnXinYminutes.com post.
