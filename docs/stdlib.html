@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Standard Lib function stack</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="bin.html">
+                bin.js
+              </a>
+            
+              
+              <a class="source" href="corelib.html">
+                corelib.coffee
+              </a>
+            
+              
+              <a class="source" href="stdlib.html">
+                stdlib.coffee
+              </a>
+            
+              
+              <a class="source" href="syn.html">
+                syn.coffee
+              </a>
+            
+              
+              <a class="source" href="whip.html">
+                whip.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1>Standard Lib function stack</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>These functions are defined here so they can be
+repeated/reiterated multiple times.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>fns =</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3>Add</h3>
+<p>Add first arg and second arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  add:  (x) -&gt; x[<span class="number">0</span>] + x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Subtract</h3>
+<p>Subtruct second arg from first arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  sub:  (x) -&gt; x[<span class="number">0</span>] - x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3>Multiply</h3>
+<p>Multiply first arg by second arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  mult: (x) -&gt; x[<span class="number">0</span>] * x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3>Divide</h3>
+<p>Divide second arg by first arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  div:  (x) -&gt; x[<span class="number">0</span>] / x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3>Modulo</h3>
+<p>Modulo second arg by first arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  mod:  (x) -&gt; x[<span class="number">0</span>] % x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3>Print</h3>
+<p>Print first arg with <code>console.log</code>.
+Returns printed string.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  print:   (x) -&gt; console.log x[<span class="number">0</span>]; x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3>Prints</h3>
+<p>Same as <code>print</code> but uses <code>process.stdout.write</code>
+to prevent newline.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  prints:  (x) -&gt; process.stdout.write x[<span class="number">0</span>]; x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h3>At</h3>
+<p>Find element of the index of first arg in second arg.
+Very similar to <code>arg1[arg2]</code> style of obtaining
+elements in arrays of other languages.</p>
+<p>This function works for strings, lists, and dictionaries.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  at:      (x) -&gt; x[<span class="number">1</span>][x[<span class="number">0</span>]]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3>If</h3>
+<p>Returns second arg if first arg evaluates to true.
+Otherwise it returns third argument.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">if</span>:      (x) -&gt; <span class="keyword">if</span> x[<span class="number">0</span>] <span class="keyword">then</span> x[<span class="number">1</span>] <span class="keyword">else</span> x[<span class="number">2</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3>Either</h3>
+<p>Logical &#39;or&#39; of first 2 args.
+This does C-Style evaluation in which if the first
+arg eval&#39;s to <strong>true</strong>, then it immediately returns that.
+Otherwise, it just returns the next arg, for that to be evaluated
+by something else.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  either:  (x) -&gt; <span class="keyword">if</span> x[<span class="number">0</span>] <span class="keyword">then</span> x[<span class="number">0</span>] <span class="keyword">else</span> x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h3>Both</h3>
+<p>Logical &#39;and&#39; of first 2 args.
+This does C-Style evaluation in reverse of that to <code>either</code>
+where if the first arg eval&#39;s to <strong>false</strong> it immediately returns that.
+Otherwise, it just returns the next arg, for that yo be evaluated
+by something else.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  both:    (x) -&gt; <span class="keyword">if</span> x[<span class="number">0</span>] <span class="keyword">then</span> x[<span class="number">1</span>] <span class="keyword">else</span> x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h3>Equal</h3>
+<p>This uses javascript <code>===</code> operator on the first
+two args. If returns the evaluation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  equal:   (x) -&gt; x[<span class="number">0</span>] <span class="keyword">is</span> x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h3>Not</h3>
+<p>Logical &#39;not&#39; of first arg.
+Reverses first arg from true to false and vice versa.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="keyword">not</span>:     (x) -&gt; <span class="keyword">not</span> x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h3>Append</h3>
+<p>Returns second arg with first arg concatenated to it.
+Exa: <code>(&lt;&lt; 4 (1 2 3)) ; =&gt; (1 2 3 4)</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  append:  (x) -&gt; x[<span class="number">1</span>].concat x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h3>Length</h3>
+<p>Returns the result of the .length method.</p>
+<p>This currently works well on strings and list, but not dicts.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  length:  (x) -&gt; x[<span class="number">0</span>].length</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h3>Greater</h3>
+<p>Uses JavaScript&#39;s <code>&gt;</code> operator to determine the greater arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  greater: (x) -&gt; x[<span class="number">0</span>] &gt; x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h3>Lesser</h3>
+<p>Uses JavaScript&#39;s <code>&lt;</code> operator to determine the lesser arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  lesser:  (x) -&gt; x[<span class="number">0</span>] &lt; x[<span class="number">1</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h3>Range</h3>
+<p>Returns list of numbers from the range of the first arg to the second arg.</p>
+<pre><code>(.. 1 10) ; =&gt; (1 2 3 4 5 6 7 8 9 10)</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  range:   (x) -&gt; [x[<span class="number">0</span>]..x[<span class="number">1</span>]]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h3>Slice</h3>
+<p>Returns sliced list of first arg from second and on args.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  slice:   (x) -&gt; x[<span class="number">0</span>].slice.call(x[<span class="number">0</span>], x[<span class="number">1.</span>.])
+
+library =</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h3>Lure</h3>
+<p>Lure is a global variable that equals the process&#39;s argv.</p>
+<pre><code>(lure) ; =&gt; (&quot;node&quot; &quot;/usr/bin/whip&quot;)</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  lure:    process.argv</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h3>True</h3>
+<p>represents true value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="literal">true</span>:    <span class="literal">true</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <h3>False</h3>
+<p>Represents false value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="literal">false</span>:   <span class="literal">false</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h2>Haskellish functions</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  head:    (a) -&gt; a[<span class="number">0</span>][<span class="number">0</span>]
+  tail:    (a) -&gt; a[<span class="number">0</span>][<span class="number">1.</span>.]
+  last:    (a) -&gt; a[<span class="number">0</span>].slice(-<span class="number">1</span>)[<span class="number">0</span>]
+  init:    (a) -&gt; a[<span class="number">0</span>][<span class="number">0.</span>.-<span class="number">1</span>]
+  take:    (x) -&gt; x[<span class="number">1</span>][<span class="number">0.</span>.x[<span class="number">0</span>]]
+  drop:    (x) -&gt; x[<span class="number">1</span>][(x[<span class="number">1</span>].length - x[<span class="number">0</span>])..-<span class="number">1</span>]
+  min:     (a) -&gt; a[<span class="number">0</span>].reduce (x, y) -&gt; <span class="keyword">if</span> x &lt; y <span class="keyword">then</span> x <span class="keyword">else</span> y
+  max:     (a) -&gt; a[<span class="number">0</span>].reduce (x, y) -&gt; <span class="keyword">if</span> x &gt; y <span class="keyword">then</span> x <span class="keyword">else</span> y
+  elem:    (x) -&gt; x[<span class="number">0</span>] <span class="keyword">in</span> x[<span class="number">1</span>]
+  reverse: (a) -&gt; a[<span class="number">0</span>].reverse()
+  even:    (x) -&gt; x[<span class="number">0</span>] % <span class="number">2</span> <span class="keyword">is</span> <span class="number">0</span>
+  odd:     (x) -&gt; x[<span class="number">0</span>] % <span class="number">2</span> <span class="keyword">isnt</span> <span class="number">0</span>
+  words:   (x) -&gt; x[<span class="number">0</span>].split <span class="string">' '</span>
+  unwords: (a) -&gt; a[<span class="number">0</span>].join <span class="string">' '</span>
+  pred:    (x) -&gt; --x[<span class="number">0</span>]
+  succ:    (x) -&gt; ++x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h3>Reduce</h3>
+<p>Takes two args, a function/lambda, and a list.
+It uses JavaScript&#39;s built-in <code>Array.prototype.reduce</code> method
+to call on the first arg.</p>
+<p>The lambda should take two args and return one value.</p>
+<pre><code>(reduce + (1 2 3 4))</code></pre>
+<p>is the same as</p>
+<pre><code>(+ (+ (+ 1 2) 3) 4)</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  reduce:  (a) -&gt; a[<span class="number">1</span>].reduce (p, x, i) -&gt; a[<span class="number">0</span>] [p, x]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <h3>Map</h3>
+<p>Takes two args, a function/lambda, and a list.
+It uses JavaScript&#39;s built-in <code>Array.prototype.map</code> method
+to call on the first arg.</p>
+<p>The lambda function should take one arg, and return one value.
+It will be called for each elem in the list, and maps the same index
+in the resulting list of the result of calling the function with
+the elem as the first arg.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  map:     (a) -&gt; a[<span class="number">1</span>].map (x) -&gt; a[<span class="number">0</span>] [x]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <h2>Word function repeats</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  add:     fns.add
+  sub:     fns.sub
+  mult:    fns.mult
+  div:     fns.div
+  mod:     fns.mod
+
+  print:   fns.print
+  prints:  fns.prints
+  at:      fns.at
+  <span class="keyword">if</span>:      fns.<span class="keyword">if</span>
+  either:  fns.either
+  both:    fns.both
+  equal:   fns.equal
+  <span class="keyword">not</span>:     fns.<span class="keyword">not</span>
+  append:  fns.append
+  length:  fns.length
+  greater: fns.greater
+  lesser:  fns.lesser
+  range:   fns.range
+  slice:   fns.slice</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h2>Shortcut function repeats</h2>
+<p>Lispy stuff.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="string">'+'</span>:  fns.add
+  <span class="string">'-'</span>:  fns.sub
+  <span class="string">'*'</span>:  fns.mult
+  <span class="string">'/'</span>:  fns.div
+  <span class="string">'%'</span>:  fns.mod
+
+  <span class="string">'.'</span>:  fns.print
+  <span class="string">'._'</span>: fns.prints
+  <span class="string">'@'</span>:  fns.at
+  <span class="string">'?'</span>:  fns.<span class="keyword">if</span>
+  <span class="string">'^'</span>:  fns.either
+  <span class="string">'&amp;'</span>:  fns.both
+  <span class="string">'='</span>:  fns.equal
+  <span class="string">'!'</span>:  fns.<span class="keyword">not</span>
+  <span class="string">'&lt;&lt;'</span>: fns.append
+  <span class="string">'_'</span>:  fns.length
+  <span class="string">'&gt;'</span>:  fns.greater
+  <span class="string">'&lt;'</span>:  fns.lesser
+  <span class="string">'..'</span>: fns.range
+  <span class="string">'\\'</span>: fns.slice</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <h2>JSON lib</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <h3>Harvest</h3>
+<p>The harvest function takes a string contianing JSON
+and returns a dictionary containing equivalent values
+for Whip.</p>
+<p>Bascially it&#39;s a <code>JSON.parse</code> wrapper.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  harvest:   (x) -&gt; JSON.parse x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <h3>Seed</h3>
+<p>The seed function takes a dictionary as an argument
+and returns equivalent JSON string.</p>
+<p>Basically it&#39;s a <code>JSON.stringify</code> wrapper.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  seed:      (x) -&gt; JSON.stringify x[<span class="number">0</span>]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <h3>Cultivate</h3>
+<p>Like <code>seed</code> function, but it optionally takes a second
+arg, a boolean, to determine to use either tabs or spaces
+for JSON prettification.
+By default, two spaces are used.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  cultivate: (x) -&gt; JSON.stringify x[<span class="number">0</span>], <span class="literal">null</span>, <span class="keyword">if</span> x[<span class="number">1</span>] <span class="keyword">then</span> <span class="string">'\t'</span> <span class="keyword">else</span> <span class="string">'  '</span>
+
+module.exports = library</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
