@@ -205,4 +205,29 @@ library =
   '..': fns.range
   '\\': fns.slice
 
+  # JSON lib
+  # --------
+
+  # ### Harvest
+  # The harvest function takes a string contianing JSON
+  # and returns a dictionary containing equivalent values
+  # for Whip.
+  #
+  # Bascially it's a `JSON.parse` wrapper.
+  harvest:   (x) -> JSON.parse x[0]
+
+  # ### Seed
+  # The seed function takes a dictionary as an argument
+  # and returns equivalent JSON string.
+  #
+  # Basically it's a `JSON.stringify` wrapper.
+  seed:      (x) -> JSON.stringify x[0]
+
+  # ### Cultivate
+  # Like `seed` function, but it optionally takes a second
+  # arg, a boolean, to determine to use either tabs or spaces
+  # for JSON prettification.
+  # By default, two spaces are used.
+  cultivate: (x) -> JSON.stringify x[0], null, if x[1] then '\t' else '  '
+
 module.exports = library
