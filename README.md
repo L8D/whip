@@ -38,4 +38,4 @@ Hello, world!
 Documentation
 -------------
 Official documentation at [https://L8D.github.io/Whip](https://L8D.github.io/Whip) with [source files](https://L8D.github.io/Whip/docs/whip).
-See [`doc/whip.lisp`](https://L8D.github.io/whip/docs/whip.lisp)
+For a whirlwind tour, see [this](http://learnxinyminutes.com/docs/whip/) great learnXinYminutes.com post.
