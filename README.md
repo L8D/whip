@@ -37,5 +37,5 @@ Hello, world!
 
 Documentation
 -------------
-Official documentation at [https://L8D.github.io/whip](https://L8D.github.io/whip)
+Official documentation at [https://L8D.github.io/Whip](https://L8D.github.io/Whip) with [source files](https://L8D.github.io/Whip/docs/whip).
 See [`doc/whip.lisp`](https://L8D.github.io/whip/docs/whip.lisp)
