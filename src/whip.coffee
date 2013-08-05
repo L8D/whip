@@ -134,8 +134,7 @@ categorize = (input) ->
   else if input[0] is '"' and input[-1..] is '"'
     new Var 'literal', eval input
   else if input[0] is "'" and input[-1..] is "'"
-    s = eval input
-    new Var 'literal', s if s.length is 1
+    new Var 'literal', input[1..-2]
   else if input instanceof Object
     new Var 'dict', input
   else
