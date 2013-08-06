@@ -229,7 +229,7 @@ library =
   # arg, a boolean, to determine to use either tabs or spaces
   # for JSON prettification.
   # By default, two spaces are used.
-  cultivate: (x) -> JSON.stringify x[0], null, x[1]? '  '
+  cultivate: (x) -> JSON.stringify x[0], null, x[1] ? '  '
 
   # File IO
   # -------
