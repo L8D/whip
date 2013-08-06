@@ -208,3 +208,17 @@ describe 'JSON lib', ->
         .should.eql key: 'value', key2: 42
     it 'should parse JSON containing null', ->
       should.not.exist ip('(harvest "{\\"foo\\": null}")').foo
+
+  describe 'seed function', ->
+    it 'should generate proper JSON', ->
+      ip('(seed {key:"value" key2:42})').should.equal '{"key":"value","key2":42}'
+
+    it 'should not generate keys with undefined value', ->
+      ip('(seed {foo:undefined})').should.equal '{}'
+
+  describe 'cultivate function', ->
+    it 'should generate pretty JSON without specifier', ->
+      ip('(cultivate {key:"value"})').should.equal '{\n  "key": "value"\n}'
+
+    it 'should generate pretty JSON with custom specifier', ->
+      ip('(cultivate {key:"value"} "\\t")').should.equal '{\n\t"key": "value"\n}'
