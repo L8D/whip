@@ -1,3 +1,4 @@
+fs = require 'fs'
 # Standard Lib function stack
 # ===========================
 
@@ -228,6 +229,27 @@ library =
   # arg, a boolean, to determine to use either tabs or spaces
   # for JSON prettification.
   # By default, two spaces are used.
-  cultivate: (x) -> JSON.stringify x[0], null, if x[1] then '\t' else '  '
+  cultivate: (x) -> JSON.stringify x[0], null, x[1]? '  '
+
+  # File IO
+  # -------
+
+  # ### Puke
+  # The puke function takes a filename and a string and writes
+  # that string to the file.
+  puke:  (x) -> fs.writeFileSync x[0], x[1], (err) -> throw err if err
+
+  # ### Spit
+  # The spit function takes a filename and a string and
+  # appends that string to the file.
+  spit:  (x) -> fs.appendFileSync x[0], x[1], (err) -> throw err if err
+
+  # ### Slurp
+  # The slurp function takes a filename and optional encoding
+  # and returns a string of the contents of the entire file.
+  #
+  # It uses UTF-8 encoding by default.
+  slurp: (x) ->
+    fs.readFileSync x[0], {encoding: x[1] ? 'utf8'}, (err, data) -> throw err if err
 
 module.exports = library
