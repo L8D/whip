@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>bin.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="bin.html">
+                bin.js
+              </a>
+            
+              
+              <a class="source" href="corelib.html">
+                corelib.coffee
+              </a>
+            
+              
+              <a class="source" href="stdlib.html">
+                stdlib.coffee
+              </a>
+            
+              
+              <a class="source" href="syn.html">
+                syn.coffee
+              </a>
+            
+              
+              <a class="source" href="whip.html">
+                whip.coffee
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>bin.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>#!<span class="regexp">/usr/</span>bin/env node
+<span class="keyword">var</span> args, argv, cmdc, cmdln, code, context, fs, repl, syn, whip;
+fs = require(<span class="string">'fs'</span>);
+repl = require(<span class="string">'repl'</span>);
+whip = require(<span class="string">'../lib/whip'</span>);
+syn = require(<span class="string">'../lib/syn'</span>);
+
+args = require(<span class="string">'optimist'</span>)
+  .usage(<span class="string">'Usage: $0 -vlp [filename]'</span>)
+  .describe(<span class="string">'p'</span>, <span class="string">'print parsed code and exit'</span>)
+  .describe(<span class="string">'v'</span>, <span class="string">'print version and exit'</span>)
+  .describe(<span class="string">'h'</span>, <span class="string">'print this help and exit'</span>)
+  .describe(<span class="string">'l'</span>, <span class="string">'use util.inspect for return values instead of syntax converter for REPL'</span>);
+
+argv = args.argv;
+
+<span class="keyword">if</span> (argv.h) {
+  args.showHelp();
+  process.exit();
+}
+
+<span class="keyword">if</span> (argv.v) {
+  console.log(<span class="string">"whip "</span> + (require(<span class="string">'../package.json'</span>).version));
+  process.exit();
+}
+
+<span class="keyword">if</span> (argv._.length &gt; <span class="number">0</span>) {
+  code = fs.readFileSync(argv._[<span class="number">0</span>], {
+    encoding: <span class="string">'utf8'</span>
+  });
+  <span class="keyword">if</span> (!argv.p) {
+    whip.interpret(whip.parse(code));
+  } <span class="keyword">else</span> {
+    console.log(whip.parse(code));
+  }
+} <span class="keyword">else</span> {
+  context = <span class="keyword">new</span> whip.Context;
+  cmdc = <span class="number">0</span>;
+  cmdln = <span class="string">""</span>;
+  repl.start({
+    prompt: <span class="string">'&gt; '</span>,
+    <span class="string">"eval"</span>: <span class="keyword">function</span>(cmd, context, filename, callback) {
+      <span class="keyword">if</span> (cmd !== <span class="string">'(\n)'</span>) {
+        cmd = cmd.slice(<span class="number">1</span>, -<span class="number">1</span>);
+        cmdc += syn.verify(whip.tokenize(cmd));
+        <span class="keyword">if</span> (cmdc &lt; <span class="number">0</span>) {
+          process.exit();
+        }
+        <span class="keyword">if</span> (cmdc !== <span class="number">0</span>) {
+          cmdln += cmd;
+          <span class="keyword">return</span> callback(cmdc);
+        } <span class="keyword">else</span> <span class="keyword">if</span> (!argv.p) {
+          cmd = cmdln + cmd;
+          cmdln = <span class="string">""</span>;
+          <span class="keyword">if</span> (argv.l) {
+            <span class="keyword">return</span> callback(<span class="literal">null</span>, whip.interpret(whip.parse(cmd, context)));
+          } <span class="keyword">else</span> {
+            <span class="keyword">return</span> callback(<span class="string">'=&gt; '</span> + syn.convert(whip.interpret(whip.parse(cmd, context))));
+          }
+        } <span class="keyword">else</span> {
+          <span class="keyword">return</span> callback(<span class="literal">null</span>, whip.parse(cmd));
+        }
+      } <span class="keyword">else</span> {
+        <span class="keyword">return</span> callback(<span class="literal">null</span>, (cmdc &gt; <span class="number">0</span> ? cmdc : <span class="keyword">void</span> <span class="number">0</span>));
+      }
+    }
+  });
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
