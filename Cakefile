@@ -15,6 +15,7 @@ files = [
 fs = require 'fs'
 {print} = require 'util'
 {spawn, exec} = require 'child_process'
+execSync = require('execSync').run
 
 try
   which = require('which').sync
@@ -227,5 +228,5 @@ docco = (callback) ->
   #if moduleExists('docco')
   walk 'src', (err, files) -> launch 'docco', files, callback
   # creating the index page
-  exec 'docco', ['-l', 'linear', '-o', '.', 'README.md'], callback
+  execSync 'docco -l linear -o . README.md', callback
   fs.renameSync 'README.html', 'index.html', callback

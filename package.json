@@ -21,7 +21,8 @@
   "devDependencies": {
     "coffee-script": "latest",
     "mocha": "latest",
-    "should": "latest"
+    "should": "latest",
+    "execSync": "latest"
   },
   "dependencies": {
     "optimist": "0.6.x"
