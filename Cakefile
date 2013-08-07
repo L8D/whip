@@ -227,5 +227,5 @@ docco = (callback) ->
   #if moduleExists('docco')
   walk 'src', (err, files) -> launch 'docco', files, callback
   # creating the index page
-  launch 'docco', ['-l', 'linear', '-o', '.', 'README.md'], callback
-  fs.rename 'README.html', 'index.html', callback
+  exec 'docco', ['-l', 'linear', '-o', '.', 'README.md'], callback
+  fs.renameSync 'README.html', 'index.html', callback
