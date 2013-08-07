@@ -199,7 +199,44 @@ describe 'stdlib', ->
       it 'should slice range list', ->
         ip('(\\ (.. 1 100) -5)').should.eql [96, 97, 98, 99, 100]
 
-  # TODO: Haskell functions, map, and reduce functions
+describe 'Haskell', ->
+  describe 'head and tail functions', ->
+    it 'should retrieve first and last elements of lists', ->
+      ip('(head (1 2 3))').should.equal 1
+      ip('(last (1 2 3))').should.equal 3
+
+    it 'should raise error if list is empty', ->
+      (-> ip '(head ())').should.throw()
+      (-> ip '(last ())').should.throw()
+
+  describe 'tail and init functions', ->
+    it 'should retrieve tail elements of a list', ->
+      ip('(tail (1 2 3))').should.eql [2, 3]
+
+    it 'should retrieve init elements of a list', ->
+      ip('(init (1 2 3))').should.eql [1, 2]
+
+  describe 'take and drop functions', ->
+    it 'should take elements of list', ->
+      ip('(take 1 (1 2 3 4 5))').should.eql [1, 2]
+
+    it 'should drop elements of list', ->
+      ip('(drop 2 (1 2 3 4 5))').should.eql [4, 5]
+
+  describe 'min and max functions', ->
+    it 'should find minimum value in list', ->
+      ip('(min (5 2 42 12 0 -14))').should.equal -14
+
+    it 'should find minimum value in list', ->
+      ip('(max (5 2 42 12 0 -14))').should.equal 42
+
+  describe 'words function', ->
+    it 'should split string into list', ->
+      ip('(words "foo bar\\nbaz")').should.eql ['foo', 'bar', 'baz']
+
+  describe 'unwords function', ->
+    it 'should join list of strings into string', ->
+      ip('(unwords ("foo" "bar" "baz"))').should.equal 'foo bar baz'
 
 describe 'JSON lib', ->
   describe 'harvest function', ->
@@ -222,3 +259,5 @@ describe 'JSON lib', ->
 
     it 'should generate pretty JSON with custom specifier', ->
       ip('(cultivate {key:"value"} "\\t")').should.equal '{\n\t"key": "value"\n}'
+
+# TODO: map and reduce functions
