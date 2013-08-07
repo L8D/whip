@@ -119,20 +119,36 @@ library =
   false:   false
 
   # ## Haskellish functions
+
+  # First element of a list.
   head:    (a) -> a[0][0]
+  # All elements of a list except for the first.
   tail:    (a) -> a[0][1..]
+  # Last element of a list.
   last:    (a) -> a[0].slice(-1)[0]
-  init:    (a) -> a[0][0..-1]
+  # Opposite of `tail`.
+  init:    (a) -> a[0][0..-2]
+  # All elements of a list up to first arg.
   take:    (x) -> x[1][0..x[0]]
+  # Opposite of `take`.
   drop:    (x) -> x[1][(x[1].length - x[0])..-1]
-  min:     (a) -> a[0].reduce (x, y) -> if x < y then x else y
-  max:     (a) -> a[0].reduce (x, y) -> if x > y then x else y
+  # Minimum value in a list.
+  min:     (a) -> Math.min.apply null, a[0]
+  # Maximum value in a list.
+  max:     (a) -> Math.max.apply null, a[0]
+  # Check if an element exists in a list.
   elem:    (x) -> x[0] in x[1]
+  # Reverse order of a list.
   reverse: (a) -> a[0].reverse()
+  # Check if even.
   even:    (x) -> x[0] % 2 is 0
+  # Check if odd.
   odd:     (x) -> x[0] % 2 isnt 0
-  words:   (x) -> x[0].split ' '
+  # Split string into list by whitespace.
+  words:   (x) -> x[0].split /\s+/
+  # Join list into string.
   unwords: (a) -> a[0].join ' '
+  # Self explanatory...
   pred:    (x) -> --x[0]
   succ:    (x) -> ++x[0]
 
