@@ -64,10 +64,10 @@ fns =
   # Returns interpreted second arg if first arg evaluates to true.
   # Otherwise it returns the interpreted third argument.
   if: (input, context) ->
-    if input[0]
-      whip.interpret input[1], context
+    if whip.interpret input[1]
+      whip.interpret input[2], context
     else
-      whip.interpret input[2], context if input[2]?
+      whip.interpret input[3], context if input[2]?
 
 module.exports = fns
 # Lambda shortcut of `->`
