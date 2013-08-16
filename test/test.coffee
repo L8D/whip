@@ -3,7 +3,6 @@ should = require 'should'
 iss = (input, type) ->
   Object::toString.call(input) is "[object #{type}]"
 
-
 # takes an AST and replaces type annotated nodes with raw values
 unan = (input) ->
   if iss input, 'Array'
@@ -48,98 +47,99 @@ describe 'Whip', ->
   describe 'interpreter', ->
     describe 'lists', ->
       it 'should return list of strings', ->
-         ip('("hi" "mary" "rose")').should.eql ['hi', "mary", "rose"]
+        ip('("hi" "mary" "rose")').should.eql ['hi', "mary", "rose"]
 
       it 'should return list of numbers', ->
-         ip('(1 2 3)').should.eql [1, 2, 3]
+        ip('(1 2 3)').should.eql [1, 2, 3]
 
       it 'should return list of numbers in strings as strings', ->
-         ip('("1" "2" "3")').should.eql ["1", "2", "3"]
+        ip('("1" "2" "3")').should.eql ["1", "2", "3"]
 
     describe 'atoms', ->
       it 'should return string atom', ->
-         ip('"a"').should.equal 'a'
+        ip('"a"').should.equal 'a'
 
       it 'should return string with space atom', ->
-          ip('"a b"').should.equal 'a b'
+        ip('"a b"').should.equal 'a b'
 
       it 'should return string with opening paren', ->
-         ip('"(a"').should.equal '(a'
+        ip('"(a"').should.equal '(a'
 
       it 'should return string with closing paren', ->
-         ip('")a"').should.equal ')a'
+        ip('")a"').should.equal ')a'
 
       it 'should return string with parens', ->
-         ip('"(a)"').should.equal '(a)'
+        ip('"(a)"').should.equal '(a)'
 
       it 'should return number atom', ->
-         ip('123').should.equal 123
+        ip('123').should.equal 123
 
     describe 'invocation', ->
       it 'should run print on an int', ->
-         ip('(print 1)').should.equal 1
+        ip('(print 1)').should.equal 1
 
       it 'should return first element of list', ->
-         ip('(head (1 2 3))').should.equal 1
+        ip('(head (1 2 3))').should.equal 1
 
       it 'should return rest of list', ->
-         ip('(tail (1 2 3))').should.eql [2, 3]
+        ip('(tail (1 2 3))').should.eql [2, 3]
 
 
 
     describe 'lambdas', ->
       it 'should return correct result when invoke lambda w no params', ->
-         ip('((lambda (tail (1 2))))').should.eql [2]
+        ip('((lambda (tail (1 2))))').should.eql [2]
 
-      it 'should return correct result for lambda that takes and returns arg', ->
-         ip('((lambda (x) x) 1)').should.equal 1
+      it 'should return correct result for lambda that returns arg', ->
+        ip('((lambda (x) x) 1)').should.equal 1
 
       it 'should return correct result for lambda that returns list of vars', ->
-         ip('((lambda (x y) (x y)) 1 2)').should.eql [1, 2]
+        ip('((lambda (x y) (x y)) 1 2)').should.eql [1, 2]
 
-      it 'should get correct result for lambda that returns list of lits + vars', ->
-         ip('((lambda (x y) (0 x y)) 1 2)').should.eql [0, 1, 2]
+      it 'should get result for lambda that returns list of lits & vars', ->
+        ip('((lambda (x y) (0 x y)) 1 2)').should.eql [0, 1, 2]
 
       it 'should return correct result when invoke lambda w params', ->
-         ip('((lambda (x) (head (x))) 1)').should.equal 1
+        ip('((lambda (x) (head (x))) 1)').should.equal 1
 
     describe 'let', ->
       it 'should eval inner expression w names bound', ->
-         ip('(let ((x 1) (y 2)) (x y))').should.eql [1, 2]
+        ip('(let ((x 1) (y 2)) (x y))').should.eql [1, 2]
 
       it 'should not expose parallel bindings to each other', ->
         # Expecting undefined for y to be consistent with normal
         # identifier resolution in littleLisp.
-         ip('(let ((x 1) (y x)) (x y))').should.eql [1, undefined]
+        ip('(let ((x 1) (y x)) (x y))').should.eql [1, undefined]
 
       it 'should accept empty binding list', ->
-         ip('(let () 42)').should.equal 42
+        ip('(let () 42)').should.equal 42
 
     describe 'if', ->
       it 'should choose the right branch', ->
-         ip('(if true 42 4711)').should.equal 42
-         ip('(if false 42 4711)').should.equal 4711
+        ip('(if true 42 4711)').should.equal 42
+        ip('(if false 42 4711)').should.equal 4711
 
     describe 'dictionaries', ->
       it 'should generate dictionary with keys and values', ->
-        ip('{key:42 "other key":"value"}').should.eql {"key":42, "other key":"value"}
+        ip('{key:42 "other key":"value"}')
+          .should.eql {"key":42, "other key":"value"}
 
 describe 'stdlib', ->
   describe 'arithmetic', ->
     it 'should add two float lits', ->
-       ip('(+ 2.5 2.5)').should.equal 5
+      ip('(+ 2.5 2.5)').should.equal 5
 
     it 'should subtract two number lits', ->
-       ip('(- 10 5)').should.equal 5
+      ip('(- 10 5)').should.equal 5
 
     it 'should multiply two number lits', ->
-       ip('(* 5 5)').should.equal 25
+      ip('(* 5 5)').should.equal 25
 
     it 'should divide two number lits', ->
-       ip('(/ 25 5)').should.equal 5
+      ip('(/ 25 5)').should.equal 5
 
     it 'should modulo two number lits', ->
-       ip('(% 19 7)').should.equal 5
+      ip('(% 19 7)').should.equal 5
 
     it 'should compare greatness of two number lits', ->
       ip('(> 5 1)').should.be.true
@@ -147,10 +147,10 @@ describe 'stdlib', ->
 
     describe 'type coercion', ->
       it 'should concatenate two strings', ->
-         ip('(+ "foo " "bar")').should.equal 'foo bar'
+        ip('(+ "foo " "bar")').should.equal 'foo bar'
 
       it 'should generate javascript-ruled string', ->
-         ip('(+ 5 "5")').should.equal '55'
+        ip('(+ 5 "5")').should.equal '55'
 
   describe 'boolean expressions', ->
     it 'should evaluate not false to true', ->
@@ -248,7 +248,8 @@ describe 'JSON lib', ->
 
   describe 'seed function', ->
     it 'should generate proper JSON', ->
-      ip('(seed {key:"value" key2:42})').should.equal '{"key":"value","key2":42}'
+      ip('(seed {key:"value" key2:42})')
+        .should.equal '{"key":"value","key2":42}'
 
     it 'should not generate keys with undefined value', ->
       ip('(seed {foo:undefined})').should.equal '{}'
@@ -258,6 +259,7 @@ describe 'JSON lib', ->
       ip('(cultivate {key:"value"})').should.equal '{\n  "key": "value"\n}'
 
     it 'should generate pretty JSON with custom specifier', ->
-      ip('(cultivate {key:"value"} "\\t")').should.equal '{\n\t"key": "value"\n}'
+      ip('(cultivate {key:"value"} "\\t")')
+        .should.equal '{\n\t"key": "value"\n}'
 
 # TODO: map and reduce functions

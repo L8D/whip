@@ -266,6 +266,6 @@ library =
   #
   # It uses UTF-8 encoding by default.
   slurp: (x) ->
-    fs.readFileSync x[0], {encoding: x[1] ? 'utf8'}, (err, data) -> throw err if err
+    fs.readFileSync x[0], {encoding: x[1] ? 'utf8'}, (err) -> throw err if err
 
 module.exports = library
