@@ -95,10 +95,8 @@ objectize = (input, object = {}, key = true) ->
   token = input.shift()
   if token is '}'
     categorize object
-  else if token is ':'
-    objectize input, object, false
   else if key
-    object[categorize(token).value] = objectize input, object
+    object[categorize(token).value] = objectize input, object, false
     objectize input, object, true
   else
     if token is '('
