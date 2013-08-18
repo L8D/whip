@@ -23,7 +23,7 @@ class Context
   get: (ident) ->
     if ident of @scope
       @scope[ident]
-    else if @parent isnt undefined
+    else if @parent?
       @parent.get ident
 
   # #### Set
@@ -33,7 +33,7 @@ class Context
   #
   # This method is only used by the core library function `def`.
   set: (ident, value) ->
-    if @parnet is undefined
+    if @parent is undefined
       @scope[ident] = value
     else
       @parent.set ident, value
