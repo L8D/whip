@@ -1,0 +1,29 @@
+{
+  "name": "whip",
+  "version": "0.2.0",
+  "description": "The JS-run LISP dialect.",
+  "keywords": [
+    "lisp",
+    "interpreter",
+    "language"
+  ],
+  "homepage": "http://github.com/L8D/whip",
+  "bugs": "http://github.com/L8D/whip/issues",
+  "author": "Tenor Biel",
+  "main": "lib",
+  "bin": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/L8D/whip.git"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+  }
+}
