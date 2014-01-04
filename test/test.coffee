@@ -23,5 +23,9 @@ describe 'parse', ->
       parse('"This is a cherry old string!"')
         .should.eql ['"This is a cherry old string!"']
 
+    it.skip 'should parse special characters in strings', ->
+      parse('"\\n\\tYo sup muh gangsta dawgs!\\n"')
+        .should.eql ['"\n\tYo sup muh gangsta dawgs!\n"']
+
     it 'should parse numbers', ->
       parse('1 1.0 1. .1 0x1 01').should.eql [1, 1, 1, .1, 1, 1]
