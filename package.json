@@ -7,7 +7,7 @@
   , "interpreter"
   , "language"
   ]
-  j
+
 , "homepage" : "http://github.com/L8D/whip"
 , "bugs"     : "http://github.com/L8D/whip/issues"
 , "author"   : "Tenor Biel"
