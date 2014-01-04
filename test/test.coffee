@@ -21,7 +21,7 @@ describe 'parse', ->
   describe 'atoms', ->
     it 'should parse strings', ->
       parse('"This is a cherry old string!"')
-        .should.eql ['This is a cherry old string!']
+        .should.eql ['"This is a cherry old string!"']
 
     it 'should parse numbers', ->
       parse('1 1.0 1. .1 0x1 01').should.eql [1, 1, 1, .1, 1, 1]
