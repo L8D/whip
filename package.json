@@ -17,16 +17,16 @@
     "url": "git://github.com/L8D/whip.git"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.3",
-    "mocha": "~1.16.2",
-    "should": "~2.1.1"
+    "coffee-script": "~1.7.1",
+    "mocha": "~1.20.0",
+    "should": "~4.0.0"
   },
   "dependencies": {},
   "engines": {
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script"
+    "test": "mocha --compilers coffee:coffee-script/register"
   },
   "license": "MIT"
 }
