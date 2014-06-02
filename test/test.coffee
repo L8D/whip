@@ -23,6 +23,10 @@ describe 'parse', ->
     parse 'foo-bar-baz'
       .should.eql ['fooBarBaz']
 
+  it 'should lex single hyphens into symbols', ->
+    parse '-'
+      .should.eql ['-']
+
   describe 'atoms', ->
     it 'should parse strings', ->
       parse '"This is a cherry old string!"'
