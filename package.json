@@ -1,37 +1,32 @@
-{ "name"        : "whip"
-, "version"     : "0.2.0"
-, "description" : "The JS-run LISP dialect."
-
-, "keywords" :
-  [ "lisp"
-  , "interpreter"
-  , "language"
-  ]
-
-, "homepage" : "http://github.com/L8D/whip"
-, "bugs"     : "http://github.com/L8D/whip/issues"
-, "author"   : "Tenor Biel"
-, "main"     : "lib"
-, "bin"      : {}
-
-, "repository" :
-  { "type" : "git"
-  , "url" : "git://github.com/L8D/whip.git"
-  }
-
-, "devDependencies" :
-  { "coffee-script" : "~1.6.3"
-  , "mocha"         : "~1.16.2"
-  , "should"        : "~2.1.1"
-  }
-
-, "dependencies" : {}
-
-, "engines" :
-  { "node" : ">=0.8.0" }
-
-, "scripts" :
-  { "test" : "mocha --compilers coffee:coffee-script" }
-
-, "license" : "MIT"
+{
+  "name": "whip",
+  "version": "0.2.0",
+  "description": "The JS-run LISP dialect.",
+  "keywords": [
+    "lisp",
+    "interpreter",
+    "language"
+  ],
+  "homepage": "http://github.com/L8D/whip",
+  "bugs": "http://github.com/L8D/whip/issues",
+  "author": "Tenor Biel",
+  "main": "lib",
+  "bin": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/L8D/whip.git"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3",
+    "mocha": "~1.16.2",
+    "should": "~2.1.1"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script"
+  },
+  "license": "MIT"
 }
