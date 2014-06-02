@@ -1,5 +1,5 @@
 should  = require 'should'
-{parse} = require '../lib'
+{parse, exec} = require '../lib'
 
 describe 'parse', ->
   it 'should lex an empty list in absence of expression', ->
@@ -39,3 +39,8 @@ describe 'parse', ->
     it 'should parse numbers', ->
       parse '1 1.0 1. .1 0x1 01'
         .should.eql [1, 1, 1, .1, 1, 1]
+
+describe 'arithmetic', ->
+  it 'should correctly add two numbers', ->
+    exec ['+', 99, 40]
+      .should.equal 139
