@@ -44,3 +44,11 @@ describe 'arithmetic', ->
   it 'should correctly add two numbers', ->
     exec ['+', 99, 40]
       .should.equal 139
+
+  it 'should execute logic structures', ->
+    exec ['if', true, '"true"', '"false"']
+      .should.equal 'true'
+
+  it 'should evaluate bound variable names', ->
+    exec ['let', [['x', 1], ['y', 'x']], ['x', 'y']]
+      .should.eql [1, undefined]
