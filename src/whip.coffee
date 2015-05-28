@@ -70,10 +70,11 @@ tokenize = (input) ->
     .join('"')
     .trim()
     .split(/\s+/)
-    .map (x) -> x
-      .replace(/!space!/g, " ")
-      .replace(/!dquote!/g, '\\"')
-      .replace(/!squote!/g, "\\'")
+    .map (x) ->
+      x
+        .replace(/!space!/g, " ")
+        .replace(/!dquote!/g, '\\"')
+        .replace(/!squote!/g, "\\'")
   i = 1
   for t in o[1..]
     switch t
